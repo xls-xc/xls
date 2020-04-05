@@ -1,4 +1,4 @@
-package com.xls.fx.test;
+package com.xls.fx.webservice.jaxws;
 
 
 import java.io.ByteArrayInputStream;
@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.List;
 
 //基于HttpPost发送请求
+import org.apache.http.client.HttpClient;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -19,12 +20,15 @@ import javax.xml.namespace.QName;
 //基于axis发送请求
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
-
-import org.dom4j.Element;
-import org.junit.platform.commons.util.StringUtils;
-
 import javax.xml.rpc.ParameterMode;
 import javax.xml.rpc.encoding.XMLType;
+
+
+import org.dom4j.Element;
+//基于测试 导入的包
+//import org.junit.platform.commons.util.StringUtils;
+
+
 
 
 /**
@@ -54,15 +58,37 @@ public class ManMethodExpressQueryTest {
 
 
     /**
-     * 使用HttpClient的方式发送内容
+     * 使用HttpClient的方式发送请求
+     * HttpClient：可以用来调用webService服务，也可以抓取网页数据
+     *
      * @param sign
      */
     public static void test1(Boolean sign) {
         String result="";
         try {
             if(sign) {
-                //调用Get方法示例
-               // org.apache.commons.httpclient.methods.GetMethod getMethod = new org.apache.commons.httpclient.methods.GetMethod("http://localhost:8080/test/method?paramname=paramvalue");
+
+               /*
+                org.apache.commons.httpclient.HttpClient client1 = new org.apache.commons.httpclient.HttpClient();
+               1.调用Get方法示例
+                org.apache.commons.httpclient.methods.GetMethod getMethod = new org.apache.commons.httpclient.methods.GetMethod("http://localhost:8080/test/method?paramname=paramvalue");
+                响应状态吗
+                 int code = client1.executeMethod(getMethod);
+                 结果
+                  result = getMethod.getResponseBodyAsString();
+
+                 2.调用post方法示例
+                org.apache.commons.httpclient.methods.PostMethod postMethod = new org.apache.commons.httpclient.methods.PostMethod("http://localhost:8080/test/method");
+                设置参数
+                postMethod.setParameter("parameterName", "parameterValue");
+                响应状态吗
+                int code = client1.executeMethod(postMethod);
+                结果
+                result = postMethod.getResponseBodyAsString();
+                */
+
+
+
                 StringBuilder xml = new StringBuilder("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\""+namespaceURI+"\">\n");
                 xml.append("   <soapenv:Header/>\n");
                 xml.append("       <soapenv:Body>\n");
@@ -91,7 +117,7 @@ public class ManMethodExpressQueryTest {
                 }
 
                 //新的调用方式
-                org.apache.http.client.HttpClient httpClient = HttpClients.createDefault();
+                HttpClient httpClient = HttpClients.createDefault();
                 HttpPost httpPost = new HttpPost(webServiceUrl);
                 httpPost.setHeader("content-type", "application/soap+xml; charset=UTF-8");
                 StringEntity stringEntity = new StringEntity(xml.toString());
@@ -108,8 +134,6 @@ public class ManMethodExpressQueryTest {
 
 
             }
-
-
 
         }catch (Exception e) {
             e.printStackTrace();

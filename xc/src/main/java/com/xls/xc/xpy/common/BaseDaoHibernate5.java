@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @ProjectName: xc (星辰)
@@ -19,7 +20,7 @@ import java.io.Serializable;
  * @Version: v1.0
  **/
 @Transactional(rollbackFor = {Exception.class})
-public class BaseDaoHibernate4<T> {
+public class BaseDaoHibernate5<T> {
     protected final Logger logger = Logger.getLogger(getClass());
 
     @Autowired
@@ -31,8 +32,19 @@ public class BaseDaoHibernate4<T> {
      * @param id
      * @return
      */
-    public T getEntity(Class<T> entityClass, Serializable id) {
+    public T findEntity(Class<T> entityClass, Serializable id) throws Exception{
         return (T) sessionFactory.getCurrentSession().get(entityClass,id);
+    }
+
+    /**
+     * 查找所有实体
+     * @param entityClazz
+     * @return
+     * @throws Exception
+     */
+    public List<T> findAllEntity(Class<T> entityClazz) throws Exception{
+       String sql = "select en from "+ entityClazz.getSimpleName() + " en";
+        return (List<T>) sessionFactory.getCurrentSession().createQuery(sql).list();
     }
 
     /**
@@ -40,7 +52,7 @@ public class BaseDaoHibernate4<T> {
      * @param entity
      * @return
      */
-    public  Serializable saveEntity(T entity) {
+    public  Serializable saveEntity(T entity) throws Exception{
        return sessionFactory.getCurrentSession().save(entity);
     }
 
@@ -48,7 +60,7 @@ public class BaseDaoHibernate4<T> {
      * 更新实体
      * @param entity
      */
-    public void updateEntity(T entity) {
+    public void updateEntity(T entity) throws Exception{
         sessionFactory.getCurrentSession().update(entity);
 
     }
@@ -57,14 +69,14 @@ public class BaseDaoHibernate4<T> {
      * 删除实体
      * @param entity
      */
-    public void deleteEntity(T entity) {
+    public void deleteEntity(T entity) throws Exception{
         sessionFactory.getCurrentSession().delete(entity);
     }
 
     /**
      * 提交事务
      */
-    public void commit() {
+    public void commit() throws Exception{
         sessionFactory.getCurrentSession().beginTransaction().commit();
     }
 }

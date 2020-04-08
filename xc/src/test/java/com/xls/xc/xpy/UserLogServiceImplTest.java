@@ -1,7 +1,7 @@
 package com.xls.xc.xpy;
 
 
-import com.xls.xc.xpy.service.IUserLogService;
+import com.xls.xc.xpy.service.UserLogService;
 import com.xls.xc.xpy.vo.UserLogVo;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -22,15 +22,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  **/
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
-public class IUserLogServiceImplTest {
+public class UserLogServiceImplTest {
     private Logger logger = Logger.getLogger(getClass());
 
     @Autowired
-    IUserLogService iUserLogService;
+    UserLogService userLogService;
 
     @Test
     public void getUserLogVoTest() {
-        UserLogVo userLogVoById = iUserLogService.getUserLogVoById(1);
+        UserLogVo userLogVoById = userLogService.getUserLogVoById(1);
         logger.info(userLogVoById.goString(userLogVoById));
 
     }
@@ -39,7 +39,7 @@ public class IUserLogServiceImplTest {
     public void saveUserLogVoTest() {
         UserLogVo userLogVo = new UserLogVo();
         userLogVo.setContent("测试内容三");
-        UserLogVo saveUserLogVo = iUserLogService.saveUserLogVo(userLogVo);
+        UserLogVo saveUserLogVo = userLogService.saveUserLogVo(userLogVo);
         if (saveUserLogVo!=null) {
             logger.info(saveUserLogVo.goString(saveUserLogVo));
         }else {
@@ -59,7 +59,7 @@ public class IUserLogServiceImplTest {
         userLogVo.setUserId(1);
         userLogVo.setUserName("csk");
         userLogVo.setIp("127.0.0.1");
-        UserLogVo saveUserLogVo = iUserLogService.updateUserLogVo(userLogVo);
+        UserLogVo saveUserLogVo = userLogService.updateUserLogVo(userLogVo);
         logger.info(saveUserLogVo.goString(saveUserLogVo));
     }
 }

@@ -1,11 +1,11 @@
 package com.xls.xc.xpy.service.impl;
 
 import com.xls.xc.xpy.util.ObjectChangeValueTool;
-import com.xls.xc.xpy.dao.IUserLogDao;
-import com.xls.xc.xpy.service.IUserLogService;
+import com.xls.xc.xpy.dao.UserLogDao;
+import com.xls.xc.xpy.service.UserLogService;
 import com.xls.xc.xpy.vo.UserLogVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,10 +18,10 @@ import org.springframework.stereotype.Service;
  * @Version: v1.0
  **/
 @Service
-public class IUserLogServiceImpl implements IUserLogService {
+public class UserLogServiceImpl implements UserLogService {
 
     @Autowired
-    IUserLogDao iUserLogDao;
+    UserLogDao userLogDao;
     @Autowired
     HibernateTransactionManager transactionManager;
     /**
@@ -33,7 +33,7 @@ public class IUserLogServiceImpl implements IUserLogService {
     public UserLogVo getUserLogVoById(Integer logId){
         UserLogVo userLogVo = null;
         try {
-            userLogVo = iUserLogDao.getUserLogVoById(logId);
+            userLogVo = userLogDao.findUserLogVoById(logId);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class IUserLogServiceImpl implements IUserLogService {
     @Override
     public UserLogVo saveUserLogVo(UserLogVo userLogVo) {
        try {
-           Integer logId = iUserLogDao.saveUserLogVo(userLogVo);
+           Integer logId = userLogDao.saveUserLogVo(userLogVo);
            userLogVo.setLogId(logId);
        } catch (Exception e) {
             e.printStackTrace();
@@ -69,10 +69,10 @@ public class IUserLogServiceImpl implements IUserLogService {
         UserLogVo userLogVo = null;
         try {
 
-            UserLogVo   oldUserLogVo = iUserLogDao.getUserLogVoById(newUserLogVo.getLogId());
+            UserLogVo   oldUserLogVo = userLogDao.findUserLogVoById(newUserLogVo.getLogId());
             userLogVo = ObjectChangeValueTool.changeAllValue(UserLogVo.class,oldUserLogVo, newUserLogVo);
-            iUserLogDao.updateUserLogVo(userLogVo);
-            userLogVo = iUserLogDao.getUserLogVoById(userLogVo.getLogId());
+            userLogDao.updateUserLogVo(userLogVo);
+            userLogVo = userLogDao.findUserLogVoById(userLogVo.getLogId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -88,7 +88,7 @@ public class IUserLogServiceImpl implements IUserLogService {
     @Override
     public boolean deleteUserLogVo(UserLogVo userLogVo) {
          try {
-             iUserLogDao.deleteUserLogVo(userLogVo);
+             userLogDao.deleteUserLogVo(userLogVo);
          } catch (Exception e) {
 
          }

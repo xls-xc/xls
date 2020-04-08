@@ -46,7 +46,7 @@
     </bean>
 
     <!-- 定义Hibernate的SessionFactory，SessionFactory需要依赖数据源，注入dataSource -->
-    <bean id="sessionFactory"  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <bean id="sessionFactory"  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- 注解的实体类通过此扫描的方式注入-->
         <property name="packagesToScan" >
@@ -67,7 +67,7 @@
     </bean>
 
     <bean id="transactionManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 

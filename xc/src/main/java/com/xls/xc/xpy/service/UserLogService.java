@@ -12,7 +12,7 @@ import com.xls.xc.xpy.vo.UserLogVo;
  * @Create: 2020-03-31 13:30
  * @Version: v1.0
  **/
-public interface IUserLogService {
+public interface UserLogService {
     /**
      * 查询实体
      * @param logId

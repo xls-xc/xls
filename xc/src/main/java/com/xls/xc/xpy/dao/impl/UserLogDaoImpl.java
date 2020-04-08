@@ -1,8 +1,8 @@
 package com.xls.xc.xpy.dao.impl;
 
 
-import com.xls.xc.xpy.common.BaseDaoHibernate4;
-import com.xls.xc.xpy.dao.IUserLogDao;
+import com.xls.xc.xpy.common.BaseDaoHibernate5;
+import com.xls.xc.xpy.dao.UserLogDao;
 import com.xls.xc.xpy.util.HostInformationTool;
 import com.xls.xc.xpy.vo.UserLogVo;
 import org.springframework.stereotype.Repository;
@@ -21,7 +21,7 @@ import java.io.Serializable;
  **/
 @Repository
 @Transactional(rollbackFor = {Exception.class})
-public class UserLogDaoImpl extends BaseDaoHibernate4<UserLogVo> implements IUserLogDao {
+public class UserLogDaoImpl extends BaseDaoHibernate5<UserLogVo> implements UserLogDao {
 
     /**
      * 查询实体
@@ -29,8 +29,8 @@ public class UserLogDaoImpl extends BaseDaoHibernate4<UserLogVo> implements IUse
      * @return
      */
     @Override
-    public UserLogVo getUserLogVoById(Integer id) throws Exception{
-        return getEntity(UserLogVo.class, id);
+    public UserLogVo findUserLogVoById(Integer id) throws Exception{
+        return findEntity(UserLogVo.class, id);
     }
 
 

@@ -2,7 +2,7 @@ package com.xls.xc.xpy.controller;
 
 
 import com.xls.xc.xpy.common.ResultEntity;
-import com.xls.xc.xpy.service.IUserLogService;
+import com.xls.xc.xpy.service.UserLogService;
 import com.xls.xc.xpy.vo.UserLogVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/userLog")
 public class UserLogController {
     @Autowired
-    IUserLogService iUserLogService;
+    UserLogService userLogService;
 
 
     @RequestMapping("/getUserLog")
     public ResultEntity getUserLog(Integer logId){
         ResultEntity resultEntity = ResultEntity.getEntitySuccess();
-        UserLogVo userLogVoById = iUserLogService.getUserLogVoById(logId);
+        UserLogVo userLogVoById = userLogService.getUserLogVoById(logId);
         resultEntity.setData(userLogVoById);
         return resultEntity;
     }

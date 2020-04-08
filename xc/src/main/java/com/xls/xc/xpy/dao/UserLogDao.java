@@ -12,13 +12,13 @@ import com.xls.xc.xpy.vo.UserLogVo;
  * @Create: 2020-03-31 13:32
  * @Version: v1.0
  **/
-public interface IUserLogDao {
+public interface UserLogDao {
     /**
      * 查询实体
      * @param id
      * @return
      */
-    UserLogVo getUserLogVoById(Integer id) throws Exception;
+    UserLogVo findUserLogVoById(Integer id) throws Exception;
 
     /**
      * 增加一个UserLogVo实体

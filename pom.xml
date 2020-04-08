@@ -17,10 +17,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring.version>4.2.1.RELEASE</spring.version>
+        <spring.version>5.2.5.RELEASE</spring.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
-        <shiro.version>1.2.6</shiro.version>
-        <cxf.version>2.4.2</cxf.version>
+        <shiro.version>1.5.1</shiro.version>
+        <cxf.version>3.3.5</cxf.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -166,11 +166,14 @@
             <artifactId>shiro-quartz</artifactId>
             <version>${shiro.version}</version>
         </dependency>
+       <!-- Ehcache是​​基于标准的开源缓存，可用于提高性能，减轻数据库负担并简化可伸缩性。Ehcache健壮，可靠且功能齐全，这使其成为使用最广泛的基于Java的缓存。-->
+        <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache-core -->
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache-core</artifactId>
-            <version>2.4.8</version>
+            <version>2.6.11</version>
         </dependency>
+
         <!--end -->
 
 

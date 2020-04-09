@@ -32,66 +32,65 @@ public class UserServiceImpl implements UserService {
     /**
      * 防止全局变量引起并发
      */
-    private ThreadLocal<ResultEntity> resultEntityT = new ThreadLocal<>();
+    private ThreadLocal<Boolean> resultSign = new ThreadLocal<>();
 
     @Override
-    public ResultEntity save(SysUser user)  {
+    public SysUser save(SysUser user)  {
 
         try {
             Integer save = userDao.save(user);
-            return findUserById(save);
+            user.setUserId(save);
         }catch (Exception e) {
             e.printStackTrace();
-            return ResultEntity.getEntityError(ResultCode.FAIL,e.toString());
+            user = null;
         }
-
+        return user;
     }
 
     @Override
-    public ResultEntity delete(SysUser user)  {
-        resultEntityT.set(ResultEntity.createResultEntity());
+    public Boolean delete(SysUser user)  {
+        this.resultSign.set(false);
         try {
             userDao.delete(user);
-            this.resultEntityT.get().setCode(ResultCode.SUCCESS);
-            this.resultEntityT.get().setMessage("删除成功");
+            this.resultSign.set(true);
         } catch (Exception e) {
             e.printStackTrace();
-            this.resultEntityT.get().setCode(ResultCode.FAIL);
-            this.resultEntityT.get().setMessage("删除成功");
         }
-        return this.resultEntityT.get();
+        return this.resultSign.get();
     }
 
     @Override
-    public ResultEntity update(SysUser user)  {
+    public Boolean update(SysUser user)  {
+        Boolean sign = false;
         try {
             userDao.update(user);
-            return ResultEntity.getEntitySuccess();
+            sign = true;
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultEntity.getEntityError(ResultCode.FAIL,e.toString());
+            sign = false;
         }
+        return sign;
     }
 
     @Override
-    public ResultEntity findUserById(Integer userId)  {
+    public SysUser findUserById(Integer userId)  {
+        SysUser user = null;
         try {
-            SysUser userById = userDao.findUserById(userId);
-            return ResultEntity.getEntitySuccess(userById);
+             user = userDao.findUserById(userId);
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultEntity.getEntityError(ResultCode.FAIL,e.toString());
         }
+        return user;
     }
 
     @Override
-    public ResultEntity findAllUser()  {
+    public List<SysUser> findAllUser()  {
+        List<SysUser> allUser = null;
         try {
-            List<SysUser> allUser = userDao.findAllUser();
-            return ResultEntity.getEntitySuccess(allUser);
+            allUser = userDao.findAllUser();
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultEntity.getEntityError(ResultCode.FAIL,e.toString());
         }
+        return allUser;
     }
 }

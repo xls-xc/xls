@@ -3,6 +3,8 @@ package com.xls.xc.xpy.service;
 import com.xls.xc.xpy.common.ResultEntity;
 import com.xls.xc.xpy.vo.SysUser;
 
+import java.util.List;
+
 /**
  * @ProjectName: xls(星辰)
  * @PackageName: com.xls.xc.xpy.service
@@ -19,21 +21,21 @@ public interface UserService {
      * @return
      * @throws Exception
      */
-    ResultEntity save(SysUser user);
+    SysUser save(SysUser user);
 
     /**
      * 删除用户
      * @param user
      * @throws Exception
      */
-    ResultEntity delete(SysUser user);
+    Boolean delete(SysUser user);
 
     /**
      * 修改用户
      * @param user
      * @throws Exception
      */
-    ResultEntity update(SysUser user);
+    Boolean update(SysUser user);
 
     /**
      * 根据ID查询用户
@@ -41,12 +43,12 @@ public interface UserService {
      * @return
      * @throws Exception
      */
-    ResultEntity findUserById(Integer userId);
+    SysUser findUserById(Integer userId);
 
     /**
      * 查询所有用户
      * @return
      * @throws Exception
      */
-    ResultEntity findAllUser() ;
+    List<SysUser> findAllUser() ;
 }

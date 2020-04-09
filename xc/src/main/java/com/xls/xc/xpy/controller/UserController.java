@@ -2,6 +2,7 @@ package com.xls.xc.xpy.controller;
 
 import com.xls.xc.xpy.common.ResultEntity;
 import com.xls.xc.xpy.service.UserService;
+import com.xls.xc.xpy.vo.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,40 @@ public class UserController {
     public ResultEntity findUserById(Integer userId) {
         ResultEntity entitySuccess = ResultEntity.getEntitySuccess();
         userService.findUserById(userId);
+        return entitySuccess;
+    }
+
+    @RequestMapping("/findAllUser")
+    public ResultEntity findAllUser() {
+        ResultEntity entitySuccess = ResultEntity.getEntitySuccess();
+        userService.findAllUser();
+        return entitySuccess;
+    }
+
+    @RequestMapping("/saveUser")
+    public ResultEntity saveUser(SysUser sysUser) {
+        ResultEntity entitySuccess = ResultEntity.getEntitySuccess();
+        SysUser user = new SysUser();
+        user.setDeptNo("111");
+        userService.save(user);
+        return entitySuccess;
+    }
+
+    @RequestMapping("/updateUser")
+    public ResultEntity updateUser(SysUser sysUser) {
+        ResultEntity entitySuccess = ResultEntity.getEntitySuccess();
+        SysUser user = new SysUser();
+        user.setUserId(2);
+        userService.update(user);
+        return entitySuccess;
+    }
+
+    @RequestMapping("/deleteUser")
+    public ResultEntity deleteUser(SysUser sysUser) {
+        ResultEntity entitySuccess = ResultEntity.getEntitySuccess();
+        SysUser user = new SysUser();
+        user.setUserId(2);
+        userService.delete(user);
         return entitySuccess;
     }
 

@@ -1,7 +1,7 @@
 package com.xls.xc.xpy.common.log;
 
 
-import com.xls.xc.xpy.common.BaseDaoHibernate4;
+import com.xls.xc.xpy.common.BaseDaoHibernate5;
 import com.xls.xc.xpy.util.HostInformationTool;
 import com.xls.xc.xpy.vo.UserLogVo;
 import org.apache.log4j.Logger;
@@ -21,7 +21,7 @@ import java.io.Serializable;
  * @Version: v1.0
  **/
 @Component
-public class GlobalLog extends BaseDaoHibernate4 {
+public class GlobalLog extends BaseDaoHibernate5 {
 
     protected final Logger logger =Logger.getLogger(getClass());
 
@@ -63,8 +63,8 @@ public class GlobalLog extends BaseDaoHibernate4 {
         userLogVo.setCreateTime(HostInformationTool.getCurrentTimestamp());
         userLogVo.setIp(ip);
         logger.info("============="+userLogVo.toString());
-        Serializable serializable = saveEntity(userLogVo);
-        userLogVo.setLogId(Integer.valueOf(serializable.toString()));
+        //Serializable serializable = saveEntity(userLogVo);
+        //userLogVo.setLogId(Integer.valueOf(serializable.toString()));
         //commit();
     }
 }

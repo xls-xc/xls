@@ -23,7 +23,7 @@ public class SysRolePermission extends BaseObject<SysRolePermission> implements 
      * 角色权限ID
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_permission_id")
     private int roleMenuId;
 
@@ -87,39 +87,7 @@ public class SysRolePermission extends BaseObject<SysRolePermission> implements 
     private Timestamp createTime;
 
 
-    /**
-     * 备用字段1
-     */
-    @Column(name = "standby_field_1")
-    private String standbyField1;
 
-    /**
-     * 备用字段2
-     */
-    @Transient
-    @Column(name = "standby_field_2")
-    private Integer standbyField2;
-
-    /**
-     * 备用字段3
-     */
-    @Transient
-    @Column(name = "standby_field_3")
-    private String standbyField3;
-
-    /**
-     * 备用字段4
-     */
-    @Transient
-    @Column(name = "standby_field_4")
-    private String standbyField4;
-
-    /**
-     * 备用字段5
-     */
-    @Transient
-    @Column(name = "standby_field_5")
-    private String standbyField5;
 
     public int getRoleMenuId() {
         return roleMenuId;
@@ -201,43 +169,5 @@ public class SysRolePermission extends BaseObject<SysRolePermission> implements 
         this.createTime = createTime;
     }
 
-    public String getStandbyField1() {
-        return standbyField1;
-    }
 
-    public void setStandbyField1(String standbyField1) {
-        this.standbyField1 = standbyField1;
-    }
-
-    public Integer getStandbyField2() {
-        return standbyField2;
-    }
-
-    public void setStandbyField2(Integer standbyField2) {
-        this.standbyField2 = standbyField2;
-    }
-
-    public String getStandbyField3() {
-        return standbyField3;
-    }
-
-    public void setStandbyField3(String standbyField3) {
-        this.standbyField3 = standbyField3;
-    }
-
-    public String getStandbyField4() {
-        return standbyField4;
-    }
-
-    public void setStandbyField4(String standbyField4) {
-        this.standbyField4 = standbyField4;
-    }
-
-    public String getStandbyField5() {
-        return standbyField5;
-    }
-
-    public void setStandbyField5(String standbyField5) {
-        this.standbyField5 = standbyField5;
-    }
 }

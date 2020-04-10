@@ -23,7 +23,7 @@ public class SysPermission extends BaseObject<SysPermission> implements Serializ
      * 权限ID
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "permission_id")
     private int userId;
 
@@ -38,7 +38,7 @@ public class SysPermission extends BaseObject<SysPermission> implements Serializ
      * 权限编码
      */
     @Column(name = "permission_code")
-    private int roleCode;
+    private String roleCode;
     /**
      * 权限名称
      */
@@ -119,28 +119,28 @@ public class SysPermission extends BaseObject<SysPermission> implements Serializ
     /**
      * 备用字段2
      */
-    @Transient
+
     @Column(name = "standby_field_2")
-    private Integer standbyField2;
+    private String standbyField2;
 
     /**
      * 备用字段3
      */
-    @Transient
+
     @Column(name = "standby_field_3")
     private String standbyField3;
 
     /**
      * 备用字段4
      */
-    @Transient
+
     @Column(name = "standby_field_4")
     private String standbyField4;
 
     /**
      * 备用字段5
      */
-    @Transient
+
     @Column(name = "standby_field_5")
     private String standbyField5;
 
@@ -160,11 +160,11 @@ public class SysPermission extends BaseObject<SysPermission> implements Serializ
         this.roleNo = roleNo;
     }
 
-    public int getRoleCode() {
+    public String getRoleCode() {
         return roleCode;
     }
 
-    public void setRoleCode(int roleCode) {
+    public void setRoleCode(String roleCode) {
         this.roleCode = roleCode;
     }
 
@@ -256,11 +256,11 @@ public class SysPermission extends BaseObject<SysPermission> implements Serializ
         this.standbyField1 = standbyField1;
     }
 
-    public Integer getStandbyField2() {
+    public String getStandbyField2() {
         return standbyField2;
     }
 
-    public void setStandbyField2(Integer standbyField2) {
+    public void setStandbyField2(String standbyField2) {
         this.standbyField2 = standbyField2;
     }
 

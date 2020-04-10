@@ -24,7 +24,7 @@ public class SysRole extends BaseObject<SysRole> implements Serializable {
      * 角色ID
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
     private int userId;
 
@@ -33,13 +33,13 @@ public class SysRole extends BaseObject<SysRole> implements Serializable {
      * 角色上级ID
      */
     @Column(name = "role_parent_id")
-    private String roleParentId;
+    private int roleParentId;
 
     /**
      * 角色优先级
      */
     @Column(name = "role_level")
-    private String roleLevel;
+    private int roleLevel;
 
     /**
      * 角色编号
@@ -51,7 +51,7 @@ public class SysRole extends BaseObject<SysRole> implements Serializable {
      * 角色编码
      */
     @Column(name = "role_code")
-    private int roleCode;
+    private String roleCode;
     /**
      * 角色名称
      */
@@ -132,28 +132,28 @@ public class SysRole extends BaseObject<SysRole> implements Serializable {
     /**
      * 备用字段2
      */
-    @Transient
+
     @Column(name = "standby_field_2")
-    private Integer standbyField2;
+    private String standbyField2;
 
     /**
      * 备用字段3
      */
-    @Transient
+
     @Column(name = "standby_field_3")
     private String standbyField3;
 
     /**
      * 备用字段4
      */
-    @Transient
+
     @Column(name = "standby_field_4")
     private String standbyField4;
 
     /**
      * 备用字段5
      */
-    @Transient
+
     @Column(name = "standby_field_5")
     private String standbyField5;
 
@@ -165,19 +165,19 @@ public class SysRole extends BaseObject<SysRole> implements Serializable {
         this.userId = userId;
     }
 
-    public String getRoleParentId() {
+    public int getRoleParentId() {
         return roleParentId;
     }
 
-    public void setRoleParentId(String roleParentId) {
+    public void setRoleParentId(int roleParentId) {
         this.roleParentId = roleParentId;
     }
 
-    public String getRoleLevel() {
+    public int getRoleLevel() {
         return roleLevel;
     }
 
-    public void setRoleLevel(String roleLevel) {
+    public void setRoleLevel(int roleLevel) {
         this.roleLevel = roleLevel;
     }
 
@@ -189,11 +189,11 @@ public class SysRole extends BaseObject<SysRole> implements Serializable {
         this.roleNo = roleNo;
     }
 
-    public int getRoleCode() {
+    public String getRoleCode() {
         return roleCode;
     }
 
-    public void setRoleCode(int roleCode) {
+    public void setRoleCode(String roleCode) {
         this.roleCode = roleCode;
     }
 
@@ -285,11 +285,11 @@ public class SysRole extends BaseObject<SysRole> implements Serializable {
         this.standbyField1 = standbyField1;
     }
 
-    public Integer getStandbyField2() {
+    public String getStandbyField2() {
         return standbyField2;
     }
 
-    public void setStandbyField2(Integer standbyField2) {
+    public void setStandbyField2(String standbyField2) {
         this.standbyField2 = standbyField2;
     }
 

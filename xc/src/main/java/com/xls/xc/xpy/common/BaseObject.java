@@ -22,7 +22,7 @@ public class BaseObject<T> {
      * @param object 对象
      * @return
      */
-    @Transient
+
     public String  goString(T object) {
 
         StringBuilder sb =new StringBuilder("========== this is UserLog Object ========= \n");

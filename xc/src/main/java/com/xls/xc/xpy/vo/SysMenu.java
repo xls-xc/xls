@@ -17,7 +17,7 @@ import java.sql.Timestamp;
  * @Version: v1.0
  **/
 @Entity
-@Table(name = "sys_menu")
+@Table(name = "sys_menu",schema = "xc")
 public class SysMenu extends BaseObject<SysMenu> implements Serializable {
 
 
@@ -25,7 +25,7 @@ public class SysMenu extends BaseObject<SysMenu> implements Serializable {
      * 菜单ID
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id")
     private int menuId;
 
@@ -64,13 +64,13 @@ public class SysMenu extends BaseObject<SysMenu> implements Serializable {
      * 菜单编码
      */
     @Column(name = "menu_code")
-    private int menuCode;
+    private String menuCode;
 
     /**
      * 菜单名称
      */
     @Column(name = "menu_name")
-    private int menuName;
+    private String menuName;
 
 
     /**
@@ -83,7 +83,7 @@ public class SysMenu extends BaseObject<SysMenu> implements Serializable {
      * 菜单图标
      */
     @Column(name = "menu_icon")
-    private int menuIcon;
+    private String menuIcon;
 
     /**
      * 菜单路径：一级菜单url为空
@@ -148,28 +148,28 @@ public class SysMenu extends BaseObject<SysMenu> implements Serializable {
     /**
      * 备用字段2
      */
-    @Transient
+
     @Column(name = "standby_field_2")
-    private Integer standbyField2;
+    private String standbyField2;
 
     /**
      * 备用字段3
      */
-    @Transient
+
     @Column(name = "standby_field_3")
     private String standbyField3;
 
     /**
      * 备用字段4
      */
-    @Transient
+
     @Column(name = "standby_field_4")
     private String standbyField4;
 
     /**
      * 备用字段5
      */
-    @Transient
+
     @Column(name = "standby_field_5")
     private String standbyField5;
 
@@ -221,19 +221,19 @@ public class SysMenu extends BaseObject<SysMenu> implements Serializable {
         this.menuNo = menuNo;
     }
 
-    public int getMenuCode() {
+    public String getMenuCode() {
         return menuCode;
     }
 
-    public void setMenuCode(int menuCode) {
+    public void setMenuCode(String menuCode) {
         this.menuCode = menuCode;
     }
 
-    public int getMenuName() {
+    public String getMenuName() {
         return menuName;
     }
 
-    public void setMenuName(int menuName) {
+    public void setMenuName(String menuName) {
         this.menuName = menuName;
     }
 
@@ -245,11 +245,11 @@ public class SysMenu extends BaseObject<SysMenu> implements Serializable {
         this.menuDescription = menuDescription;
     }
 
-    public int getMenuIcon() {
+    public String getMenuIcon() {
         return menuIcon;
     }
 
-    public void setMenuIcon(int menuIcon) {
+    public void setMenuIcon(String menuIcon) {
         this.menuIcon = menuIcon;
     }
 
@@ -325,11 +325,11 @@ public class SysMenu extends BaseObject<SysMenu> implements Serializable {
         this.standbyField1 = standbyField1;
     }
 
-    public Integer getStandbyField2() {
+    public String getStandbyField2() {
         return standbyField2;
     }
 
-    public void setStandbyField2(Integer standbyField2) {
+    public void setStandbyField2(String standbyField2) {
         this.standbyField2 = standbyField2;
     }
 

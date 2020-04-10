@@ -3,10 +3,7 @@ package com.xls.xc.xpy.vo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xls.xc.xpy.common.BaseObject;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -19,12 +16,14 @@ import java.sql.Timestamp;
  * @Create: 2020-04-07 21:54
  * @Version: v1.0
  **/
+@Entity
+@Table(name = "sys_user_role")
 public class SysUserRole extends BaseObject<SysUserRole> implements Serializable {
     /**
      * 用户角色ID
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_role_id")
     private int roleMenuId;
 
@@ -87,38 +86,83 @@ public class SysUserRole extends BaseObject<SysUserRole> implements Serializable
     @Column(name = "create_time")
     private Timestamp createTime;
 
+    public int getRoleMenuId() {
+        return roleMenuId;
+    }
 
-    /**
-     * 备用字段1
-     */
-    @Column(name = "standby_field_1")
-    private String standbyField1;
+    public void setRoleMenuId(int roleMenuId) {
+        this.roleMenuId = roleMenuId;
+    }
 
-    /**
-     * 备用字段2
-     */
-    @Transient
-    @Column(name = "standby_field_2")
-    private Integer standbyField2;
+    public String getRoleNo() {
+        return roleNo;
+    }
 
-    /**
-     * 备用字段3
-     */
-    @Transient
-    @Column(name = "standby_field_3")
-    private String standbyField3;
+    public void setRoleNo(String roleNo) {
+        this.roleNo = roleNo;
+    }
 
-    /**
-     * 备用字段4
-     */
-    @Transient
-    @Column(name = "standby_field_4")
-    private String standbyField4;
+    public String getMenuNo() {
+        return menuNo;
+    }
 
-    /**
-     * 备用字段5
-     */
-    @Transient
-    @Column(name = "standby_field_5")
-    private String standbyField5;
+    public void setMenuNo(String menuNo) {
+        this.menuNo = menuNo;
+    }
+
+    public String getUserRoleDescription() {
+        return userRoleDescription;
+    }
+
+    public void setUserRoleDescription(String userRoleDescription) {
+        this.userRoleDescription = userRoleDescription;
+    }
+
+    public String getCreateUserName() {
+        return createUserName;
+    }
+
+    public void setCreateUserName(String createUserName) {
+        this.createUserName = createUserName;
+    }
+
+    public String getUpdateUserName() {
+        return updateUserName;
+    }
+
+    public void setUpdateUserName(String updateUserName) {
+        this.updateUserName = updateUserName;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public int getIsDel() {
+        return isDel;
+    }
+
+    public void setIsDel(int isDel) {
+        this.isDel = isDel;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
 }

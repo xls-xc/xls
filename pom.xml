@@ -17,9 +17,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring.version>5.2.5.RELEASE</spring.version>
-        <hibernate.version>4.3.11.Final</hibernate.version>
-       <!-- <hibernate.version>4.3.2.Final</hibernate.version>-->
+        <spring.version>5.2.4.RELEASE</spring.version>
+        <hibernate.version>5.4.10.Final</hibernate.version>
         <shiro.version>1.5.1</shiro.version>
         <cxf.version>3.3.5</cxf.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -134,11 +133,13 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>4.3.2.Final</version>
+            <version>6.0.17.Final</version>
         </dependency>
+
         <!--    end-->
 
 

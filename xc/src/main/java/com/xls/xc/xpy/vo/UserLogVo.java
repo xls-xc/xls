@@ -17,13 +17,13 @@ import java.sql.Timestamp;
  * @Version: v1.0
  **/
 @Entity
-@Table(name = "user_log_vo")
+@Table(name = "sys_user_log_vo")
 public class UserLogVo extends BaseObject<UserLogVo> implements Serializable {
     /**
      * 日志ID
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "log_id")
     private int logId;
 

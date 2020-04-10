@@ -17,7 +17,7 @@ import java.sql.Timestamp;
  * @Version: v1.0
  **/
 @Entity
-@Table(name = "sys_dept")
+@Table(name = "sys_dept",schema = "xc")
 public class SysDept extends BaseObject<SysDept> implements Serializable {
 
 
@@ -27,7 +27,7 @@ public class SysDept extends BaseObject<SysDept> implements Serializable {
      * 部门ID
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dept_id")
     private int userId;
 
@@ -36,48 +36,48 @@ public class SysDept extends BaseObject<SysDept> implements Serializable {
      * 部门上级ID
      */
     @Column(name = "dept_parent_id")
-    private String roleParentId;
+    private int roleParentId;
 
     /**
      * 部门优先级
      */
     @Column(name = "dept_level")
-    private String roleLevel;
+    private int deptLevel;
 
     /**
      * 部门编号
      */
     @Column(name = "dept_no")
-    private String roleNo;
+    private String deptNo;
 
     /**
      * 部门编码
      */
     @Column(name = "dept_code")
-    private int roleCode;
+    private String deptCode;
     /**
      * 部门名称
      */
     @Column(name = "dept_name")
-    private String roleName;
+    private String deptName;
 
     /**
      * 部门职能
      */
     @Column(name = "dept_function")
-    private String roleFunction;
+    private String deptFunction;
 
     /**
      * 部门描述
      */
     @Column(name = "dept_description")
-    private String roleDescription;
+    private String deptDescription;
 
     /**
      * 部门状态：0未启用，1启用(默认启用)
      */
     @Column(name = "dept_status")
-    private int roleStats;
+    private int deptStats;
 
 
 
@@ -135,28 +135,28 @@ public class SysDept extends BaseObject<SysDept> implements Serializable {
     /**
      * 备用字段2
      */
-    @Transient
+
     @Column(name = "standby_field_2")
-    private Integer standbyField2;
+    private String standbyField2;
 
     /**
      * 备用字段3
      */
-    @Transient
+
     @Column(name = "standby_field_3")
     private String standbyField3;
 
     /**
      * 备用字段4
      */
-    @Transient
+
     @Column(name = "standby_field_4")
     private String standbyField4;
 
     /**
      * 备用字段5
      */
-    @Transient
+
     @Column(name = "standby_field_5")
     private String standbyField5;
 
@@ -168,68 +168,68 @@ public class SysDept extends BaseObject<SysDept> implements Serializable {
         this.userId = userId;
     }
 
-    public String getRoleParentId() {
+    public int getRoleParentId() {
         return roleParentId;
     }
 
-    public void setRoleParentId(String roleParentId) {
+    public void setRoleParentId(int roleParentId) {
         this.roleParentId = roleParentId;
     }
 
-    public String getRoleLevel() {
-        return roleLevel;
+    public int getDeptLevel() {
+        return deptLevel;
     }
 
-    public void setRoleLevel(String roleLevel) {
-        this.roleLevel = roleLevel;
+    public void setDeptLevel(int deptLevel) {
+        this.deptLevel = deptLevel;
     }
 
-    public String getRoleNo() {
-        return roleNo;
+    public String getDeptNo() {
+        return deptNo;
     }
 
-    public void setRoleNo(String roleNo) {
-        this.roleNo = roleNo;
+    public void setDeptNo(String deptNo) {
+        this.deptNo = deptNo;
     }
 
-    public int getRoleCode() {
-        return roleCode;
+    public String getDeptCode() {
+        return deptCode;
     }
 
-    public void setRoleCode(int roleCode) {
-        this.roleCode = roleCode;
+    public void setDeptCode(String deptCode) {
+        this.deptCode = deptCode;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
-    public String getRoleFunction() {
-        return roleFunction;
+    public String getDeptFunction() {
+        return deptFunction;
     }
 
-    public void setRoleFunction(String roleFunction) {
-        this.roleFunction = roleFunction;
+    public void setDeptFunction(String deptFunction) {
+        this.deptFunction = deptFunction;
     }
 
-    public String getRoleDescription() {
-        return roleDescription;
+    public String getDeptDescription() {
+        return deptDescription;
     }
 
-    public void setRoleDescription(String roleDescription) {
-        this.roleDescription = roleDescription;
+    public void setDeptDescription(String deptDescription) {
+        this.deptDescription = deptDescription;
     }
 
-    public int getRoleStats() {
-        return roleStats;
+    public int getDeptStats() {
+        return deptStats;
     }
 
-    public void setRoleStats(int roleStats) {
-        this.roleStats = roleStats;
+    public void setDeptStats(int deptStats) {
+        this.deptStats = deptStats;
     }
 
     public String getCreateUserName() {
@@ -288,11 +288,11 @@ public class SysDept extends BaseObject<SysDept> implements Serializable {
         this.standbyField1 = standbyField1;
     }
 
-    public Integer getStandbyField2() {
+    public String getStandbyField2() {
         return standbyField2;
     }
 
-    public void setStandbyField2(Integer standbyField2) {
+    public void setStandbyField2(String standbyField2) {
         this.standbyField2 = standbyField2;
     }
 

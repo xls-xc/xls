@@ -25,14 +25,19 @@ public class BaseObject<T> {
 
     public String  goString(T object) {
 
-        StringBuilder sb =new StringBuilder("========== this is UserLog Object ========= \n");
-                      sb.append("{\""+object.getClass().getSimpleName()+"\":{");
+        StringBuilder sb =  sb =new StringBuilder("========== this is "+object.getClass().getSimpleName()+" Object ========= \n");
         try {
-            Field[] declaredFields = object.getClass().getDeclaredFields();
-            for (Field declaredField : declaredFields) {
+            sb.append("{\""+object.getClass().getSimpleName()+"\":{");
 
+            Field[] declaredFields = object.getClass().getDeclaredFields();
+
+            for(int i=0;i<declaredFields.length;i++){
+                Field declaredField = declaredFields[i];
                 //获得属性名称
                 String name = declaredField.getName();
+
+
+
 
                 //属性名首字母转大写
                 name = name.substring(0,1).toUpperCase() + name.substring(1);
@@ -47,6 +52,9 @@ public class BaseObject<T> {
                 Object invoke = getMethod.invoke(object);
 
                 if(type.equals("int")) {
+                    if(i>0) {
+                        sb.append(",");
+                    }
                     sb.append("\""+name+"\":"+invoke);
                 }else if(type.equals("class java.lang.Integer")||type.equals("class java.lang.Double")||type.equals("class java.lang.Float")) {
                     sb.append(",\""+name+"\":"+invoke);

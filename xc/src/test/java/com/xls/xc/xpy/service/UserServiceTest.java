@@ -35,13 +35,14 @@ public class UserServiceTest {
     public void update() {
         SysUser user = new SysUser();
         user.setUserId(2);
+        user.setUserName("user");
         userService.update(user);
     }
 
     @Test
     public void findUserById() {
         SysUser userById = userService.findUserById(1);
-        System.out.println(userById);
+        System.out.println(userById.goString(userById));
     }
 
     @Test

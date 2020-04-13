@@ -84,6 +84,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public SysUser findUserByAccount(String account) {
+        SysUser user = new SysUser();
+        user.setUserName("1");
+        //1是启用状态
+        user.setStatus(1);
+        return user;
+    }
+
+    @Override
     public List<SysUser> findAllUser()  {
         List<SysUser> allUser = null;
         try {

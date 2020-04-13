@@ -46,6 +46,11 @@ public class UserDaoImpl extends BaseDaoHibernate5<SysUser> implements UserDao {
     }
 
     @Override
+    public SysUser finUserByAccount(String account) throws Exception {
+        return null;
+    }
+
+    @Override
     public List<SysUser> findAllUser() throws Exception {
         return findAllEntity(SysUser.class);
     }

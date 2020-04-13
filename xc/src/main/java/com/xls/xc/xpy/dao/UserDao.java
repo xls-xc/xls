@@ -45,6 +45,14 @@ public interface UserDao {
     SysUser findUserById(Integer userId) throws Exception;
 
     /**
+     * 根据用户账号查询用户
+     * @param account
+     * @return
+     * @throws Exception
+     */
+    SysUser finUserByAccount(String account) throws Exception;
+
+    /**
      * 查询所有用户
      * @return
      * @throws Exception

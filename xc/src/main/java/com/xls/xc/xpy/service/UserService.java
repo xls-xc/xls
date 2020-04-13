@@ -46,6 +46,13 @@ public interface UserService {
     SysUser findUserById(Integer userId);
 
     /**
+     * 根据用户名查询用户
+     * @param account
+     * @return
+     */
+    SysUser findUserByAccount(String account);
+
+    /**
      * 查询所有用户
      * @return
      * @throws Exception

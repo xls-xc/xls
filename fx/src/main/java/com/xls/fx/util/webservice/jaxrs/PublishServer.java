@@ -1,4 +1,4 @@
-package com.xls.fx.webservice.jaxrs;
+package com.xls.fx.util.webservice.jaxrs;
 
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
@@ -6,7 +6,7 @@ import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 
 /**
  * @ProjectName: xls (星辰)
- * @PackageName: com.xls.fx.webservice.jaxrs
+ * @PackageName: com.xls.fx.util.webservice.jaxrs
  * @ClassName: PublishTest
  * @Description: 还没有添加类的描述信息
  * @Author: SkyChen

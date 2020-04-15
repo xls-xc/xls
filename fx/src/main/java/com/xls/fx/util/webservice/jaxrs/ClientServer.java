@@ -1,4 +1,4 @@
-package com.xls.fx.webservice.jaxrs;
+package com.xls.fx.util.webservice.jaxrs;
 
 import org.apache.cxf.jaxrs.client.WebClient;
 import javax.ws.rs.core.MediaType;
@@ -9,7 +9,7 @@ import java.io.UnsupportedEncodingException;
 
 /**
  * @ProjectName: xls (星辰)
- * @PackageName: com.xls.fx.webservice.jaxrs
+ * @PackageName: com.xls.fx.util.webservice.jaxrs
  * @ClassName: ClientServer
  * @Description: 测试JaxWs 发布的服务  若想事项不能和发布服务的在同一启动工程即（同一tomcat下）
  * @Author: SkyChen

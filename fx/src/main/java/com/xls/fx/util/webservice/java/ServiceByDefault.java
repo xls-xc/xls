@@ -1,4 +1,4 @@
-package com.xls.fx.webservice.java;
+package com.xls.fx.util.webservice.java;
 
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;

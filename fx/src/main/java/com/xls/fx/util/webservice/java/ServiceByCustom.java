@@ -1,4 +1,4 @@
-package com.xls.fx.webservice.java;
+package com.xls.fx.util.webservice.java;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -8,7 +8,7 @@ import javax.xml.ws.Endpoint;
 
 /**
  * @ProjectName: xls (星辰)
- * @PackageName: com.xls.fx.webservice.java
+ * @PackageName: com.xls.fx.util.webservice.java
  * @ClassName: ServiceByCustom
  * @Description: 基于Java自带API实现自定义的Webservice发布  默认只会发布接口的方法，实现类自定义的方法不会被发布了
  * @Author: SkyChen

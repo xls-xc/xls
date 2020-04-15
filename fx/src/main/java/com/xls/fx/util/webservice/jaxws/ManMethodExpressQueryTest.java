@@ -1,4 +1,4 @@
-package com.xls.fx.webservice.jaxws;
+package com.xls.fx.util.webservice.jaxws;
 
 
 import java.io.ByteArrayInputStream;

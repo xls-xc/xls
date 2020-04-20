@@ -1,0 +1,55 @@
+@echo off
+
+:start
+
+echo ============请选择设置ip的类型:
+
+echo ============1、圆通172.16.41.131
+
+echo ============2、备用172.16.41.131
+
+echo ============3、自动获取IP
+
+echo ============4、退出命令行
+
+set /P var=":"
+
+if %var%==1 goto ip1
+if %var%==2 goto ip2
+if %var%==3 goto ipdhcp
+if %var%==4 goto exit
+
+:ip1
+
+netsh interface ip set address name="以太网" source=static addr=172.16.41.131 mask=255.255.255.0 gateway=172.16.41.1
+cmd /c netsh interface ip set dns name="以太网" source=static addr=114.114.114.114
+echo ********设置圆通172.16.41.131成功**********
+
+echo ------------------------------------------
+
+goto start
+
+:ip2
+
+netsh interface ip set address name="以太网" source=static addr=172.16.41.131 mask=255.255.255.0 gateway=172.16.41.1
+
+cmd /c netsh interface ip set dns name="以太网" source=static addr=114.114.114.114
+cmd /c netsh interface ip set dns name="以太网" source=static addr=1180.168.255.18
+
+echo ********备用172.16.41.131**********
+echo ------------------------------------------
+
+goto start
+
+:ipdhcp
+
+netsh interface ip set address name="以太网" source=dhcp
+netsh interface ip delete dns "以太网" all
+ipconfig /flushdns
+
+echo ********设置自动获取IP成功**********
+
+echo ------------------------------------------
+
+goto start
+

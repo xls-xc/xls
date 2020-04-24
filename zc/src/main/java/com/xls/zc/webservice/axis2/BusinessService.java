@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
  * @Create: 2020-04-22 15:27
  * @Version: v1.0
  **/
-@Component(value = "test")
-public class Test {
+@Component(value = "businessService")
+public class BusinessService {
     public String greek(String greekWord){
         System.out.print("hello World!");
         return greekWord;

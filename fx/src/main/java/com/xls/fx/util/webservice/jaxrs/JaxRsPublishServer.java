@@ -13,7 +13,7 @@ import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
  * @Create: 2020-04-05 14:55
  * @Version: v1.0
  **/
-public class PublishServer {
+public class JaxRsPublishServer {
     private static final String SERVER_ADDR="http://localhost:8080/jaxrs";
 
     public static void main(String[] args) {
@@ -24,11 +24,7 @@ public class PublishServer {
         factory.setAddress(SERVER_ADDR);
 
         //设置服务类
-        factory.setServiceBean(new PublishServiceImpl());
-
-        //添加日志输入输入出拦截器
-        factory.getInInterceptors().add(new LoggingInInterceptor());
-        factory.getOutInterceptors().add(new LoggingOutInterceptor());
+        factory.setServiceBean(new JaxRsServiceImpl());
 
         //发布服务
         factory.create();

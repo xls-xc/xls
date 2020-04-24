@@ -1,14 +1,16 @@
+/*
 package com.xls.fx.config;
 
 import com.xls.fx.service.IExpressQueryService;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import javax.xml.ws.Endpoint;
 
-/**
+*
  * @ProjectName: xls (星辰)
  * @PackageName: com.xls.fx.config
  * @ClassName: GlobalExpressConfig
@@ -16,17 +18,19 @@ import javax.xml.ws.Endpoint;
  * @Author: SkyChen
  * @Create: 2020-04-03 21:39
  * @Version: v1.0
- **/
-@Configuration
+ *
+
+//@Configuration
 public class GlobalExpressConfig {
 
 
-    /**
+*
      *
      * 此方法被注释后:wsdl访问地址为http://127.0.0.1:8080/services/expressQueryService?wsdl
      * 去掉注释后：wsdl访问地址为：http://127.0.0.1:8080/cxf/expressQueryService?wsdl
      * @return
-     */
+
+
 //    @SuppressWarnings("all")
 //    @Bean
 //    public ServletRegistrationBean dispatcherServlet() {
@@ -40,16 +44,18 @@ public class GlobalExpressConfig {
 
     private final IExpressQueryService iExpressQueryService;
 
-   /**
+*
      * 构造函数注入
      * @param iExpressQueryService
-     */
+
+
+   //@Autowired
     public GlobalExpressConfig(Bus bus, @Qualifier("expressQueryServiceImpl") IExpressQueryService iExpressQueryService){
         this.bus = bus;
         this.iExpressQueryService = iExpressQueryService;
     }
 
-    /**
+*
      * Endpoint是用户订阅主题时，指定接收消息的终端地址；当有消息发布到主题时，MNS会主动将消息推送到对应的 Endpoint； 多个Subscription可以指定同一个Endpoint。
      *
      * HttpEndpoint
@@ -69,7 +75,8 @@ public class GlobalExpressConfig {
      * 格式：mail:directmail:{MailAddress}；
      * MNS将以mail的形式将消息推送到指定的邮箱中，具体使用方式请参见邮件推送。
      * @return
-     */
+
+
     @Bean
     public Endpoint endpoint() {
         EndpointImpl endpoint = new EndpointImpl(bus,iExpressQueryService);
@@ -80,3 +87,4 @@ public class GlobalExpressConfig {
 
     }
 }
+*/

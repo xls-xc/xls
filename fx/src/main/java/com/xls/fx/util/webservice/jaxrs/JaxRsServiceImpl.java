@@ -12,7 +12,7 @@ import java.util.List;
  * @Create: 2020-04-05 14:52
  * @Version: v1.0
  **/
-public class PublishServiceImpl implements iPublishService {
+public class JaxRsServiceImpl implements IJaxRsService {
     @Override
     public void saveParam(String saveParam) {
         System.out.println("保存"+saveParam);
@@ -24,18 +24,18 @@ public class PublishServiceImpl implements iPublishService {
     }
 
     @Override
-    public List<String> findAllParams() {
-        List<String> allParams = new ArrayList<>();
-        allParams.add("1");
-        allParams.add("2");
-        allParams.add("3");
-        allParams.add("4");
-        return allParams;
+    public List<User> findAllParams() {
+        List<User> users = new ArrayList<>();
+        User user = new User();
+        users.add(user);
+        return users;
     }
 
     @Override
-    public String findParamById(Integer id) {
-        return "return:"+id;
+    public User findParamById(Integer id) {
+        User user = new User();
+        user.setUserId("1");
+        return user;
     }
 
     @Override

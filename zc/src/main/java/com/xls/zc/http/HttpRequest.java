@@ -1,7 +1,4 @@
-package com.xls.fx.util.request;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+package com.xls.zc.http;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,85 +6,24 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @ProjectName: xls (星辰)
- * @PackageName: com.xls.fx.util.request
- * @ClassName: Http
+ * @PackageName: com.xls.zc.http
+ * @ClassName: HttpRequest
  * @Description: java原生HttpURLConnection  发送http请求
- * 目前JAVA实现HTTP请求的方法用的最多的有两种：
- * 一种是通过HTTPClient这种第三方的开源框架去实现。HTTPClient对HTTP的封装性比较不错，通过它基本上能够满足我们大部分的需求，
- *    HttpClient3.1 是 org.apache.commons.httpclient下操作远程 url的工具包，虽然已不再更新，但实现工作中使用httpClient3.1的代码还是很多，
- * 二是HttpClient4.5是org.apache.http.client下操作远程 url的工具包，最新的；
- * 另一种则是通过HttpURLConnection去实现，HttpURLConnection是JAVA的标准类，是JAVA比较原生的一种实现方式。
+ *  目前JAVA实现HTTP请求的方法用的最多的有两种：
+ *   一种是通过HTTPClient这种第三方的开源框架去实现。HTTPClient对HTTP的封装性比较不错，通过它基本上能够满足我们大部分的需求，
+ *      HttpClient3.1 是 org.apache.commons.httpclient下操作远程 url的工具包，虽然已不再更新，但实现工作中使用httpClient3.1的代码还是很多，
+ *   二是HttpClient4.5是org.apache.http.client下操作远程 url的工具包，最新的；
+ *   另一种则是通过HttpURLConnection去实现，HttpURLConnection是JAVA的标准类，是JAVA比较原生的一种实现方式。
  * @Author: SkyChen
- * @Create: 2020-04-14 20:06
+ * @Create: 2020-04-24 19:53
  * @Version: v1.0
  **/
 public class HttpRequest {
-
-    private static String url = "http://srmadmin.yto.net.cn/material/materialTop";
-
-    private static String itemNo = "itemNo=";
-
-    public static void main(String[] args) {
-        //test1();
-
-        //test2();
-
-    }
-
-    public static void test2() {
-        Integer[] ids = {};
-        String[] itemNos = {};
-
-        List<String> sqls = new ArrayList<>();
-        if(ids.length==itemNos.length) {
-            for (int i=0;i<itemNos.length;i++) {
-                StringBuilder sql = new StringBuilder(" update sysDispatcherPurchase set ");
-                String value = itemNos[i];
-                String param = itemNo+value;
-                String s = sendGet(url, param);
-                Map parse = JSON.parseObject(s);
-                List<Map> data =(List<Map>) parse.get("data");
-                String itemDesc = (String)data.get(0).get("itemDesc");
-                String itemSpec = (String)data.get(0).get("itemSpec");
-                String itemUnit = (String)data.get(0).get("itemUnit");
-                sql.append(" item_name='"+itemDesc+"'");
-                sql.append(" ,item_spec='"+itemSpec+"'");
-                sql.append(" ,unit_name='"+itemUnit+"'");
-                sql.append(" where id="+ids[i]+";");
-                sqls.add(sql.toString());
-            }
-        }
-        System.out.println("==============================开始输出sql=================================\n");
-        for (String sql : sqls) {
-            System.out.println(sql);
-        }
-
-    }
-
-
-
-    public static void test1() {
-        Integer[] ids = {};
-        String[] itemNos = {};
-        if(ids.length==itemNos.length) {
-            for (int i=0;i<itemNos.length;i++) {
-                String  result = "update sys_purchase_order_details set item_name ='";
-                String value = itemNos[i];
-                String param = itemNo+value;
-                String s = sendGet(url, param);
-                Map parse = JSON.parseObject(s);
-                List<Map> data =(List<Map>) parse.get("data");
-                System.out.println(result+data.get(0).get("itemDesc")+"'"+" ,item_specifications='"+data.get(0).get("itemSpec")+"'"+" where id = "+ids[i]+";");
-            }
-        }
-    }
-
     /**
      * 向指定URL发送GET方法的请求
      *
@@ -193,5 +129,4 @@ public class HttpRequest {
         }
         return result;
     }
-
 }

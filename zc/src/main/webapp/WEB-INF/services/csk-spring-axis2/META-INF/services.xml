@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serviceGroup>
     <!-- 可以指定发布多个service -->
-    <service name="testService">
+    <service name="businessService">
         <description>
             axis2 example
         </description>
@@ -10,7 +10,7 @@
             org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier
         </parameter>
         <!-- bean名字 -->
-        <parameter name="SpringBeanName">test</parameter>
+        <parameter name="SpringBeanName">businessService</parameter>
         <!-- 服务级消息接收器 -->
         <messageReceivers>
             <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
@@ -18,7 +18,7 @@
         </messageReceivers>
         <!--注释部分为未集成spring时的普通配置-->
         <!--<parameter name="ServiceClass">
-            com.xls.zc.webservice.axis2.Test
+            com.xls.zc.webservice.axis2.BusinessService
         </parameter>
         &lt;!&ndash; Operation级消息接收器:可以为不同的操作指定不同的消息接收器&ndash;&gt;
         <operation name="greek">

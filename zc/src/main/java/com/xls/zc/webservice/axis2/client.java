@@ -17,7 +17,7 @@ import javax.xml.namespace.QName;
  **/
 public class client {
 
-    private static String url = "http://localhost:8080/zc/services/testService?wsdl";
+    private static String url = "http://localhost:8080/zc/services/businessService?wsdl";
 
     public static void main(String[] args) throws Exception
     {

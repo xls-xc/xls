@@ -11,30 +11,62 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>xc</module>
+        <module>zc</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <javax.servlet-api>4.0.1</javax.servlet-api>
+        <junit>4.13</junit>
+        <slf4j-api>1.7.21</slf4j-api>
+        <slf4j-log4j12>1.7.21</slf4j-log4j12>
+        <lombok>1.18.12</lombok>
+        <com.alibaba-fastjson>1.2.68</com.alibaba-fastjson>
         <spring.version>5.2.4.RELEASE</spring.version>
         <hibernate.version>5.4.10.Final</hibernate.version>
+        <hibernate-validator>6.0.17.Final</hibernate-validator>
+        <mysql-connector-java>5.1.36</mysql-connector-java>
+        <com.alibaba-druid>1.0.31</com.alibaba-druid>
         <shiro.version>1.5.1</shiro.version>
-        <cxf.version>3.3.5</cxf.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <cxf.version>3.3.6</cxf.version>
+        <axis2.version>1.7.9</axis2.version>
+        <okhttp>4.3.1</okhttp>
     </properties>
-
+<dependencyManagement>
     <dependencies>
+        <!-- start   是提供编写servlet时要用到 HttpServletRequest和HttpServletResponse
+        等对象的，但是tomcat里也有，运行时要用tomcat自己的-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--    end-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok}</version>
+            <!--不设置optional 或者optional是false，表示传递依赖。-->
+            <optional>false</optional>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13</version>
-            <scope>test</scope>
+            <version>${junit}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${com.alibaba-fastjson}</version>
         </dependency>
 
 
-        <!-- start common -->
-        <!-- DtGrid中使用MapUtils处理查询参数 -->
+    <!--     start common
+         DtGrid中使用MapUtils处理查询参数
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
@@ -50,7 +82,138 @@
             <artifactId>guava</artifactId>
             <version>20.0</version>
         </dependency>
+            end
+
+        start 日志
+         https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.12.1</version>
+            <optional>true</optional>
+        </dependency>
+
+            end-->
+
+
+        <!--start http请求依赖-->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp}</version>
+            </dependency>
+        <!--end http请求依赖-->
+
+
+
+        <!--start json数据 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180813</version>
+        </dependency>
+        <!--end -->
+
+        <!--start 日志 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j-log4j12}</version>
+            <optional>true</optional>
+        </dependency>
+        <!--end -->
+
+
+        <!--start 支持shiro框架的依赖 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-quartz</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <!-- Ehcache是​​基于标准的开源缓存，可用于提高性能，减轻数据库负担并简化可伸缩性。Ehcache健壮，可靠且功能齐全，这使其成为使用最广泛的基于Java的缓存。-->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.11</version>
+        </dependency>
+        <!--end -->
+
+
+        <!--start Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validato}</version>
+        </dependency>
         <!--    end-->
+
+        <!--start Database -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${com.alibaba-druid}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java}</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>12.1.0</version>
+            &lt;!&ndash;  <scope>system</scope>
+              <systemPath>c:\elshop\ojdbc7.jar</systemPath>&ndash;&gt;
+        </dependency>-->
+        <!--end -->
+
+
         <!--start spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -99,133 +262,9 @@
             <version>${spring.version}</version>
         </dependency>
         <!--    end-->
-        <!--start 日志 -->
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.12.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.21</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.21</version>
-        </dependency>
-        <!--    end-->
-
-        <!-- start   是提供编写servlet时要用到 HttpServletRequest和HttpServletResponse 等对象的，但是tomcat里也有，运行时要用tomcat自己的-->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <!--    end-->
-
-        <!--start Hibernate -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>6.0.17.Final</version>
-        </dependency>
-
-        <!--    end-->
-
-
-        <!--start 支持shiro框架的依赖 -->
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-web</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-ehcache</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-quartz</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-       <!-- Ehcache是​​基于标准的开源缓存，可用于提高性能，减轻数据库负担并简化可伸缩性。Ehcache健壮，可靠且功能齐全，这使其成为使用最广泛的基于Java的缓存。-->
-        <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache-core -->
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
-            <version>2.6.11</version>
-        </dependency>
-
-        <!--end -->
-
-
-        <!--start json数据 -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.10.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.10.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.10.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20180813</version>
-        </dependency>
-        <!--end -->
-
-
-        <!--start Database -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.0.31</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.36</version>
-        </dependency>
-        <!--<dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc7</artifactId>
-            <version>12.1.0</version>
-            &lt;!&ndash;  <scope>system</scope>
-              <systemPath>c:\elshop\ojdbc7.jar</systemPath>&ndash;&gt;
-        </dependency>-->
-        <!--end -->
-
-
     </dependencies>
+</dependencyManagement>
+
 
 
     <build>

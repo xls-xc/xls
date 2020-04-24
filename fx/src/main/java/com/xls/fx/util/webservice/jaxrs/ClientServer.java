@@ -2,6 +2,8 @@ package com.xls.fx.util.webservice.jaxrs;
 
 import org.apache.cxf.jaxrs.client.WebClient;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import org.junit.Test;
 
 
@@ -18,7 +20,7 @@ import java.io.UnsupportedEncodingException;
  **/
 public class ClientServer {
     private static final String CALL_ADDR = "http://localhost:8080/jaxrs";
-    private static final String ROOT_MAPPING = "/iPublishService";
+    private static final String ROOT_MAPPING = "/iJaxRsService";
     private static final String SUB_MAPPING1 = "/test";
 
     @Test
@@ -26,19 +28,20 @@ public class ClientServer {
         //通过WebClient对象远程调用服务端
 
 
-        WebClient.create(CALL_ADDR+ROOT_MAPPING+SUB_MAPPING1)
+        Response response = WebClient.create(CALL_ADDR + ROOT_MAPPING + SUB_MAPPING1)
                 .type(MediaType.APPLICATION_JSON) //指定请求的数据格式为json 默认为xml
                 .encoding("UTF-8")
                 .post("发送的内容");
+        System.out.println(response);
     }
 
     @Test
     public void testGet() {
-        String user = WebClient.create(CALL_ADDR+ROOT_MAPPING+SUB_MAPPING1 + "/1")
+        User car = WebClient.create(CALL_ADDR + ROOT_MAPPING + SUB_MAPPING1)
                 .type(MediaType.APPLICATION_JSON)
-                .get(String.class);
+                .get(User.class);
 
-        System.out.println("查询到的数据：" + user);
+        System.out.println("查询到的数据：" + car);
     }
 
     @Test

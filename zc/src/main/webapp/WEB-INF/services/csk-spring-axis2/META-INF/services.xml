@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+    <!-- 可以指定发布多个service -->
+    <service name="testService">
+        <description>
+            axis2 example
+        </description>
+        <!-- 指定接口类地址 -->
+        <parameter name="ServiceObjectSupplier">
+            org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier
+        </parameter>
+        <!-- bean名字 -->
+        <parameter name="SpringBeanName">test</parameter>
+        <!-- 服务级消息接收器 -->
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+                             class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </messageReceivers>
+        <!--注释部分为未集成spring时的普通配置-->
+        <!--<parameter name="ServiceClass">
+            com.xls.zc.webservice.axis2.Test
+        </parameter>
+        &lt;!&ndash; Operation级消息接收器:可以为不同的操作指定不同的消息接收器&ndash;&gt;
+        <operation name="greek">
+            <messageReceiver  mep="http://www.w3.org/2004/08/wsdl/in-out" class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </operation>-->
+    </service>
+</serviceGroup>

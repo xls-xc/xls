@@ -1,0 +1,37 @@
+JAVA 三种WebService 规范，分别是JAXM&SAAJ、JAX-WS（JAX-RPC）、JAX-RS。
+(1.)JAX-WS：
+JAX-WS（Java API For XML-WebService），JDK1.6 自带的版本为JAX-WS2.1，其底层支持为JAXB。早期的基于SOAP 的JAVA 的Web 服务规范JAX-RPC（Java API For
+XML-Remote Procedure Call）目前已经被JAX-WS 规范取代，JAX-WS 是JAX-RPC 的演进版本，但JAX-WS 并不完全向后兼容JAX-RPC，二者最大的区别就是RPC/encoded 样式的WSDL，JAX-WS 已经不提供这种支持。JAX-RPC 的API 从JAVA EE5 开始已经移除，如果你使用J2EE1.4，其API 位于javax.xml.rpc.*包。JAX-WS（JSR 224）规范的API 位于javax.xml.ws.*包，其中大部分都是注解，提供API 操作Web 服务（通常在客户端使用的较多，由于客户端可以借助SDK 生成，因此这个包中的API 我们较少会直接使用）。WS-MetaData（JSR 181）是JAX-WS 的依赖规范，其API 位于javax.jws.*包，使用注解配置公开的Web 服务的相关信息和配置SOAP 消息的相关信息。
+
+(2.)JAXM&SAAJ：
+JAXM（JAVA API For XML Message）主要定义了包含了发送和接收消息所需的API，相当于Web 服务的服务器端，其API 位于javax.messaging.*包，它是JAVA EE 的可选包，因此你需要单独下载。SAAJ（SOAP With Attachment API For Java，JSR 67）是与JAXM 搭配使用的API，为构建SOAP 包和解析SOAP 包提供了重要的支持，支持附件传输，它在服务器端、客户端都需要使用。这里还要提到的是SAAJ 规范，其API 位于javax.xml.soap.*包。JAXM&SAAJ 与JAX-WS 都是基于SOAP 的Web 服务，相比之下JAXM&SAAJ 暴漏了SOAP更多的底层细节，编码比较麻烦，而JAX-WS 更加抽象，隐藏了更多的细节，更加面向对象，实现起来你基本上不需要关心SOAP 的任何细节。那么如果你想控制SOAP 消息的更多细节，可以使用JAXM&SAAJ，2012年版本为1.3。
+
+(3.)JAX-RS：
+JAX-RS 是JAVA 针对REST(Representation State Transfer)风格制定的一套Web 服务规范，由于推出的较晚，该规范（JSR 311，目前JAX-RS 的版本为1.0）并未随JDK1.6 一起发行，你需要到JCP 上单独下载JAX-RS 规范的接口，其API 位于javax.ws.rs.*包。
+这里的JAX-WS 和JAX-RS 规范我们采用Apache CXF 作为实现，CXF 是Objectweb Celtix和Codehaus XFire 合并而成。CXF 的核心是org.apache.cxf.Bus（总线），类似于Spring 的ApplicationContext，Bus 由BusFactory 创建，默认是SpringBusFactory 类，可见默认CXF是依赖于Spring 的，Bus 都有一个ID，默认的BUS 的ID 是cxf。你要注意的是Apache CXF2.2 的发行包中的jar 你如果直接全部放到lib 目录，那么你必须使用JDK1.6，否则会报JAX-WS 版本不一致的问题。对于JAXM&SAAJ 规范我们采用JDK 中自带的默认实现。
+
+
+
+
+三、几种Web Service框架的基本概念介绍
+
+1、JWS
+
+JWS是Java语言对WebService服务的一种实现，用来开发和发布服务。而从服务本身的角度来看JWS服务是没有语言界限的。但是Java语言为Java开发者提供便捷发布和调用WebService服务的一种途径。
+
+
+2、Axis2
+Axis2是Apache下的一个重量级WebService框架，准确说它是一个Web Services / SOAP / WSDL 的引擎，是WebService框架的集大成者，它能不但能制作和发布WebService，而且可以生成Java和其他语言版WebService客户端和服务端代码。这是它的优势所在。但是，这也不可避免的导致了Axis2的复杂性，使用过的开发者都知道，它所依赖的包数量和大小都是很惊人的，打包部署发布都比较麻烦，不能很好的与现有应用整合为一体。但是如果你要开发Java之外别的语言客户端，Axis2提供的丰富工具将是你不二的选择。Axis2的开发方式类似一个小型的应用服务器，Axis2的开发包要以WAR的形式部署到Servlet容器中，比如Tomcat，通过这些容器可以对工作中的Web Service进行很好的监控和管理。Axis2的Web administrion模块可以让我们动态的配置Axis2.一个新的服务可以上载，激活，使之失效，修改web服务的参数。管理UI也可以管理一个或者多个处于运行状态的服务。这种界面化管理方式的一个弊端是所有在运行时修改的参数没有办法保存，因为在重启动之后，你所做的修改就会全部失效。Axis2允许自己作为独立的应用来发布Web Service，并提供了大量的功能和一个很好的模型，这个模型可以通过它本身的架构（modular architecture）不断添加新的功能。有些开发人员认为这种方式对于他们的需求太过于繁琐，从而会更喜欢CXF。
+
+3、XFire
+XFire是一个高性能的WebService框架，在Java6之前，它的知名度甚至超过了Apache的Axis2，XFire的优点是开发方便，与现有的Web整合很好，可以融为一体，并且开发也很方便。但是对Java之外的语言，没有提供相关的代码工具。XFire后来被Apache收购了，原因是它太优秀了，收购后，随着Java6 JWS的兴起，开源的WebService引擎已经不再被看好，渐渐的都败落了。
+
+4、CXF
+Apache CXF = Celtix + XFire，Apache CXF 的前身叫 Apache CeltiXfire。CXF 继承了 Celtix 和 XFire 两大开源项目的精华，提供了对 JAX-WS 全面的支持，并且提供了多种 Binding 、DataBinding、Transport 以及各种 Format 的支持，并且可以根据实际项目的需要，采用代码优先（Code First）或者 WSDL 优先（WSDL First）来轻松地实现 Web Services 的发布和使用。Apache CXF已经是一个正式的Apache顶级项目。CXF支持多种协议，如：SOAP、XML/HTTP、RESTful HTTP 、 CORBA ，并且可以在多种传输协议上运行，比如：HTTP、JMS 、 JBI。CXF可以与Spring进行无缝集成。CXF 框架是一种基于 Servlet 技术的 SOA 应用开发框架，要正常运行基于 CXF 应用框架开发的企业应用，除了 CXF 框架本身之外，还需要 JDK 和 Servlet 容器的支持。CXF不但是一个优秀的Web Services / SOAP / WSDL 引擎，也是一个不错的ESB总线，为SOA的实施提供了一种选择方案，当然他不是最好的，它仅仅实现了SOA架构的一部分。CXF更注重开发人员的工效（ergonomics）和嵌入能力（embeddability）。大多数都可以通过配置API来完成，替代了比较繁琐的XML配置文件， Spring的集成性经常的被提及，CXF支持Spring2.0和CXF's API和Spring的配置文件可以非常好的对应。
+注：对于Axis2与CXF之间的关系，一个是Axis2出现的时间较早，而CXF的追赶速度快。
+
+以上几种框架的总结：
+a：目前开发Web Service的几个框架，分别为Axis，axis2，Xfire，CXF以及JWS(也就是前面所述的JAX-WS，这是Java6发布所提供的对Web Service服务的一种实现。)
+b：Axis与XFire已随着技术不断的更替慢慢落幕，都已不再更新。
+c：以axis2与cxf所最为常用，目前也只有axis2和cxf官方有更新。
+d：从使用场景来说，如果你需要多语言的支持，你应该选择AXIS2。如果你需要把你的实现侧重JAVA并希望和Spring集成，CXF就是更好的选择。

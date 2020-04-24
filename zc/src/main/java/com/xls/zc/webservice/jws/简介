@@ -1,0 +1,4 @@
+
+    JWS是Java语言对WebService服务的一种实现，用来开发和发布服务。而从服务本身的角度来看JWS服务是没有语言界限的。
+但是Java语言为Java开发者提供便捷发布和调用WebService服务的一种途径。
+从JDK5开始，JAVA为WebService提供了Jax-ws支持，所以使用该指南需要具备JAVA 的JDK5以上版本

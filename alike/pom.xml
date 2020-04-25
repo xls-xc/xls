@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <description>alike （具有相同组建的基础服务包）</description>
+    <parent>
+        <artifactId>xls</artifactId>
+        <groupId>com.xls</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.xls.alike</groupId>
+    <artifactId>alike</artifactId>
+    <packaging>jar</packaging>
+
+    <name>alike</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
+
+    <profiles>
+        <profile>
+            <id>dev(develop)</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <approveAddr>http://127.0.0.1</approveAddr>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>test(test)</id>
+            <properties>
+                <approveAddr>http://127.0.0.2</approveAddr>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>uat(uat)</id>
+            <properties>
+                <approveAddr>http://127.0.0.3</approveAddr>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>product(master)</id>
+            <properties>
+                <approveAddr>http://127.0.0.4</approveAddr>
+            </properties>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.8</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <finalName>alike</finalName>
+        <resources>
+           <!-- <include>与<exclude>是用来圈定和排除某一文件目录下的文件是否是工程资源的,
+            <include>中指定的为资源文件, 其它的都不是,
+            <exclude>中指定的除了这些都为资源文件,
+            如果<include>与<exclude>划定的范围存在冲突时， 以<exclude>划定的范围为准,
+            当<include>与<exclude>指定了相同的文件时,它们是不会被排除的,-->
+
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>config.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+               <!-- 不打打包某个文件-->
+                <excludes>
+                    <exclude>config.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
+
+</project>

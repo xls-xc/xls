@@ -6,6 +6,7 @@ import com.xls.xc.xpy.vo.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @ProjectName: xls (星辰)
@@ -21,10 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     private UserService userService;
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
 
 
     @RequestMapping("/findUserById")
@@ -41,7 +38,7 @@ public class UserController {
         return entitySuccess;
     }
 
-    @RequestMapping("/saveUser")
+    @RequestMapping(value = "/saveUser",method = RequestMethod.POST)
     public ResultEntity saveUser(SysUser sysUser) {
         ResultEntity entitySuccess = ResultEntity.getEntitySuccess();
         SysUser user = new SysUser();

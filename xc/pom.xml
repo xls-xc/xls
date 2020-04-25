@@ -17,6 +17,11 @@
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
   <dependencies>
+      <dependency>
+        <groupId>com.xls.alike</groupId>
+        <artifactId>alike</artifactId>
+        <version>${project.version}</version>
+      </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>

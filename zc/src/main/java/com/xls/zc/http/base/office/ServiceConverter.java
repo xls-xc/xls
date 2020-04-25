@@ -22,7 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
-*/
+*//*
+
 
 package com.xls.zc.http.base.office;
 
@@ -252,4 +253,4 @@ public class ServiceConverter
         JSONObject jsonObj = (JSONObject) obj;
         return jsonObj;
     }
-}
+}*/

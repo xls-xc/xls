@@ -25,7 +25,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <approveAddr>http://127.0.0.1</approveAddr>
+                <approveAddr>http://127.0.0.1:8081</approveAddr>
             </properties>
         </profile>
 
@@ -67,6 +67,10 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
     </dependencies>
 
 
@@ -83,7 +87,7 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>config.properties</include>
+                    <include>alike-config.properties</include>
                 </includes>
             </resource>
             <resource>
@@ -91,7 +95,7 @@
                 <filtering>false</filtering>
                <!-- 不打打包某个文件-->
                 <excludes>
-                    <exclude>config.properties</exclude>
+                    <exclude>alike-config.properties</exclude>
                 </excludes>
             </resource>
         </resources>

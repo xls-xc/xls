@@ -1,0 +1,19 @@
+ XcApproveInteractionLog xcApproveInteractionLog = new XcApproveInteractionLog();
+        xcApproveInteractionLog.setSystemName("星辰审批系统");
+        xcApproveInteractionLog.setModuleName("星辰（xc)");
+        xcApproveInteractionLog.setMenuName("用户管理");
+        xcApproveInteractionLog.setRequestUrl(userChangeRoleApproveUrl);
+        xcApproveInteractionLog.setClassName(getClass().getName());
+        xcApproveInteractionLog.setMenuName(Thread.currentThread().getStackTrace()[1].getMethodName());
+        xcApproveInteractionLog.setRequestTime(TimeUtil.getCurrentDate());
+        xcApproveInteractionLog.setRequestParam(JSON.toJSONString(userRole));
+
+        String s = HttpClient4Util.doPostJson(userChangeRoleApproveUrl, JSON.toJSONString(userRole));
+
+        xcApproveInteractionLog.setResponseTime(TimeUtil.getCurrentDate());
+        xcApproveInteractionLog.setResponseTimeLong(xcApproveInteractionLog.getResponseTimeLong(xcApproveInteractionLog));
+        xcApproveInteractionLog.setRequestParam(s);
+        xcApproveInteractionLog.setResponseCode(ResultCode.SUCCESS);
+        xcApproveInteractionLog.setUserNo("000001");
+        xcApproveInteractionLog.setUserCode("000000x1");
+        xcApproveInteractionLog.setUserName("admin");

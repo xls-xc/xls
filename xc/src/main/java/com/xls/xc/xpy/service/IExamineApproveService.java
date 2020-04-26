@@ -15,9 +15,8 @@ public interface IExamineApproveService {
 
     /**
      * 用户角色转变审批
-     * @param oldUserRole
-     * @param newUserRole
+     * @param userRole
      * @return
      */
-    Boolean userChangeRoleApprove(SysUserRole oldUserRole,SysUserRole newUserRole);
+    Boolean userChangeRoleApprove(SysUserRole userRole);
 }

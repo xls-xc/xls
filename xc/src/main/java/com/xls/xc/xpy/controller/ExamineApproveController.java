@@ -42,6 +42,7 @@ public class ExamineApproveController {
     @RequestMapping(value = "/userChangeRoleApprove",method = RequestMethod.PUT)
     @ResponseBody
     public ResultEntity userChangeRoleApprove(@RequestBody SysUserRole userRole) {
+        Boolean isUserChangeRoleApprove = iExamineApproveService.userChangeRoleApprove(userRole);
         return ResultEntity.getEntitySuccess();
     }
 

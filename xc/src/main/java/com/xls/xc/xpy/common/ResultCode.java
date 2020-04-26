@@ -15,20 +15,20 @@ public interface ResultCode {
     /**
      * 成功状态吗
      */
-    int SUCCESS = 200;
+    Integer SUCCESS = 200;
 
 
 
     /**
      * 失败
      */
-    int FAIL = 400;
+    Integer FAIL = 400;
 
 
     /**
      * 参数异常
      */
-    int PARAM_ERROR = 1001;
+    Integer PARAM_ERROR = 1001;
 
 
 }

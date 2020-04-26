@@ -13,21 +13,9 @@
        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
        http://www.springframework.org/schema/task
        http://www.springframework.org/schema/task/spring-task-3.2.xsd">
-    <import resource="classpath:applicationContext-alike.xml"/>
 
-    <!--    导入其它配置文件-->
-    <context:property-placeholder location="classpath:config.properties" file-encoding="UTF-8" ignore-unresolvable="true"/>
-    <bean id="globalConfig" class="com.xls.xc.xpy.config.GlobalConfig">
-        <property name="ip" value="${ip}"/>
-        <property name="hostName" value="${hostName}"/>
-        <property name="mainHost" value="${mainHost}"/>
-    </bean>
 
-    <import resource="classpath:base/applicationContext-base.xml"/>
-
-    <context:component-scan base-package="com.xls.xc.xpy.common.log"/>
-    <context:component-scan base-package="com.xls.xc.xpy.dao"/>
-    <context:component-scan base-package="com.xls.xc.xpy.service"/>
+    <context:component-scan base-package="com.xls.alike"/>
     <!-- <context:component-scan base-package="com.xls.xpy"/>
    排除扫描符合正则表达式的类
          <context:exclude-filter type="regex" expression="com.xls.xpy.util.*" />

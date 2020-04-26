@@ -1,109 +1,138 @@
-package com.xls.alike.entity.log;
+package com.xls.xc.xpy.vo;
+
 
 import com.xls.alike.util.TimeUtil;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * @ProjectName: xls (星辰)
- * @PackageName: com.xls.alike.entity.log
- * @ClassName: InteractinLogBase
- * @Description: 交互日志基础类实体
+ * @PackageName: com.xls.xc.xpy.vo
+ * @ClassName: XcApproveInteractionLogVo
+ * @Description: 星辰审批交互日志实体
  * @Author: SkyChen
- * @Create: 2020-04-25 10:36
+ * @Create: 2020-04-26 20:37
  * @Version: v1.0
  **/
-public class InteractionLogBase {
+@Entity
+@Table(name = "xc_interaction_log")
+public class XcInteractionLogVo {
+
 
 
     /**
      * 求响应时长
-     * @param interactionLogBase
+     * @param xcInteractionLogVo
      * @return
      */
-    public Long getResponseTimeLong(InteractionLogBase interactionLogBase) {
-        Date requestTime = interactionLogBase.getRequestTime();
-        Date responseTime = interactionLogBase.getResponseTime();
+    @Transient
+    public Long getResponseTimeLong(XcInteractionLogVo xcInteractionLogVo) {
+        Date requestTime = xcInteractionLogVo.getRequestTime();
+        Date responseTime = xcInteractionLogVo.getResponseTime();
         return TimeUtil.getTimeDifference(requestTime,responseTime);
     }
+
+
+
+    /**
+     * 星辰审批交互日志实体ID
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "xc_interaction_log_id")
+    private int xcInteractionLogId;
 
     /**
      * 对接系统名称
      */
+    @Column(name = "system_name")
     private String systemName;
 
 
     /**
      * 模块名称
      */
+    @Column(name = "module_name")
     private String moduleName;
 
     /**
      * 菜单名称
      */
+    @Column(name = "menu_name")
     private String menuName;
 
     /**
      * 请求地址
      */
+    @Column(name = "request_url")
     private String requestUrl;
 
     /**
      * 触发请求类名
      */
+    @Column(name = "class_name")
     private String className;
 
     /**
      * 触发请求方法名
      */
-
+    @Column(name = "method_name")
     private String methodName;
 
     /**
      * 请求时间
      */
+    @Column(name = "request_time")
     private Date requestTime;
 
     /**
      * 响应时间
      */
-
+    @Column(name = "response_time")
     private Date responseTime;
 
     /**
      * 响应时长
      */
+    @Column(name = "response_time_long")
     private Long responseTimeLong;
 
     /**
      * 请求参数 text
      */
+    @Column(name = "request_param")
     private String requestParam;
 
     /**
      * 响应参数
      */
+    @Column(name = "response_param")
     private String responseParam;
 
     /**
-     * 返回值状态吗
+     * 返回值状态码
      */
+    @Column(name = "response_code")
     private Integer responseCode;
 
 
     /**
      * 操作人编号
      */
+    @Column(name = "user_no")
     private String  userNo;
 
     /**
      * 操作人编码
      */
+    @Column(name = "user_code")
     private String  userCode;
 
     /**
      * 操作人姓名
      */
+    @Column(name = "user_name")
     private String userName;
 
 
@@ -111,26 +140,25 @@ public class InteractionLogBase {
     /**
      * 备用字段
      */
-
+    @Column(name = "standby_field1")
     private String standbyField1;
-
+    @Column(name = "standby_field2")
     private String standbyField2;
-
+    @Column(name = "standby_field3")
     private String standbyField3;
-
+    @Column(name = "standby_field4")
     private String standbyField4;
-
+    @Column(name = "standby_field5")
     private String standbyField5;
 
-    /*private String paramRequestTime;//请求时间
 
-    private String paramResponseTime;//响应时间
+    public int getXcInteractionLogId() {
+        return xcInteractionLogId;
+    }
 
-    private Integer current_page;//当前页
-
-    private Integer size;//页面大小
-
-    private Integer start_page;//开始查询页*/
+    public void setXcInteractionLogId(int xcInteractionLogId) {
+        this.xcInteractionLogId = xcInteractionLogId;
+    }
 
     public String getSystemName() {
         return systemName;

@@ -15,10 +15,22 @@ import java.util.Date;
  * @Version: v1.0
  **/
 public class TimeUtil {
+
     /**
      * 时间格式化类型
      */
     private static final String TYPE1 ="yyyy-MM-dd HH:mm:ss";
+
+
+    /**
+     * 求时间差  第二个时间减第一个时间的差值
+     * @param date1
+     * @param date2
+     * @return
+     */
+    public static Long getTimeDifference(Date date1,Date date2) {
+        return dateToLong(date2)-dateToLong(date1);
+    }
 
     /**
      * 比较时间第一个时间是否早于或等于第二个时间

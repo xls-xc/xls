@@ -65,12 +65,12 @@ public class ExamineApproveServiceImpl implements IExamineApproveService {
 
             xcApproveInteractionLog.setResponseTime(TimeUtil.getCurrentDate());
             xcApproveInteractionLog.setResponseTimeLong(xcApproveInteractionLog.getResponseTimeLong(xcApproveInteractionLog));
-            xcApproveInteractionLog.setRequestParam(s);
+            xcApproveInteractionLog.setResponseParam( JSON.toJSONString(map));
             xcApproveInteractionLog.setResponseCode(ResultCode.SUCCESS);
         }catch (Exception e) {
             xcApproveInteractionLog.setResponseTime(TimeUtil.getCurrentDate());
             xcApproveInteractionLog.setResponseTimeLong(xcApproveInteractionLog.getResponseTimeLong(xcApproveInteractionLog));
-            xcApproveInteractionLog.setRequestParam(e.getMessage());
+            xcApproveInteractionLog.setResponseParam(e.getMessage());
             xcApproveInteractionLog.setResponseCode(ResultCode.SUCCESS);
         }
         try {

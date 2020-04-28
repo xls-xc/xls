@@ -7,7 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FxApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FxApplication.class, args);
+        try {
+
+            SpringApplication.run(FxApplication.class, args);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

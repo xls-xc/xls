@@ -1,6 +1,6 @@
-package com.xls.fx.dao;
+package com.xls.fx.auto.dao;
 
-import com.xls.fx.vo.XcInteractionLog;
+import com.xls.fx.auto.entity.XcInteractionLog;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author chenshuaikai
- * @since 2020-04-28
+ * @since 2020-04-29
  */
 public interface XcInteractionLogMapper extends BaseMapper<XcInteractionLog> {
 

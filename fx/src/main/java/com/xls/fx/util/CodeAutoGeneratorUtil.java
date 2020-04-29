@@ -37,22 +37,23 @@ public class CodeAutoGeneratorUtil {
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(false);// XML columList
         gc.setAuthor("chenshuaikai");// 作者
-    // 自定义文件命名，注意 %s 会自动填充表实体属性！
+         // 自定义文件命名，注意 %s 会自动填充表实体属性！
         gc.setControllerName("%sController");
         gc.setServiceName("%sService");
         gc.setServiceImplName("%sServiceImpl");
         gc.setMapperName("%sMapper");
         gc.setXmlName("%sMapper");
         mpg.setGlobalConfig(gc);
-// 数据源配置
+        // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("SkyChen123456.");
-        dsc.setUrl("jdbc:mysql://192.168.216.201:3306/xc");
+        dsc.setPassword("123456");
+        dsc.setUrl("jdbc:mysql://192.168.216.202:3306/xc");
         mpg.setDataSource(dsc);
-// 策略配置
+
+        // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         //strategy.setTablePrefix(new String[]{"sys_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
@@ -61,17 +62,17 @@ public class CodeAutoGeneratorUtil {
         strategy.setSuperServiceImplClass(null);
         strategy.setSuperMapperClass(null);
         // 自定义 controller 父类
-        //strategy.setSuperControllerClass("com.clement.commons.BaseController");
+        strategy.setSuperControllerClass("com.xls.fx.config.BaseController");
         mpg.setStrategy(strategy);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.xls.fx");
+        pc.setParent("com.xls.fx.auto");
         pc.setController("controller");
         pc.setService("service");
         pc.setServiceImpl("service.impl");
         pc.setMapper("dao");
-        pc.setEntity("vo");
+        pc.setEntity("entity");
         pc.setXml("xml");
         mpg.setPackageInfo(pc);
         // 执行生成

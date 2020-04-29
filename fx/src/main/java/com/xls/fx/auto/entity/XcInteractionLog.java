@@ -1,4 +1,4 @@
-package com.xls.fx.vo;
+package com.xls.fx.auto.entity;
 
 import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author chenshuaikai
- * @since 2020-04-28
+ * @since 2020-04-29
  */
 @TableName("xc_interaction_log")
 public class XcInteractionLog implements Serializable {

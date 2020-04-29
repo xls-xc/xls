@@ -1,6 +1,6 @@
-package com.xls.fx.service;
+package com.xls.fx.auto.service;
 
-import com.xls.fx.vo.XcInteractionLog;
+import com.xls.fx.auto.entity.XcInteractionLog;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.service.IService;
  * </p>
  *
  * @author chenshuaikai
- * @since 2020-04-28
+ * @since 2020-04-29
  */
 public interface XcInteractionLogService extends IService<XcInteractionLog> {
-	
+
 }

@@ -11,7 +11,7 @@
     <groupId>com.xls.fx</groupId>
     <artifactId>fx</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>fx</name>
     <description>Demo project for Spring Boot</description>
 
@@ -29,6 +29,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <!--排除这个logback-classi-->
+        <!--    <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>-->
         </dependency>
 
         <dependency>
@@ -63,7 +70,6 @@
             <version>1.0.5</version>
         </dependency>
         <!--加强版整合mybatis依赖的jar包 end-->
-
         <!--模板需要的jar包依赖 start-->
         <!--MP核心库-->
         <dependency>
@@ -78,6 +84,15 @@
             <version>2.0</version>
         </dependency>
         <!--模板需要的jar包依赖 end-->
+
+        <!--mybatis分页插件PageHelper依赖的jar包 start-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.11</version>
+        </dependency>
+        <!--mybatis分页插件PageHelper依赖的jar包 end-->
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>

@@ -26,7 +26,7 @@ public class GeneratorEntityUtil {
     public static void main(String[] args) throws IOException, XMLParserException, InvalidConfigurationException, SQLException, InterruptedException{
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
-        File configFile = new File("C:\\Users\\clement\\Desktop\\xls\\fx\\src\\main\\resources\\mybatis\\generatorConfing.xml");
+        File configFile = new File("C:\\Users\\clement\\Desktop\\xls\\fx\\src\\main\\resources\\mybatis\\GeneratorEntityUtil.xml");
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(configFile);
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);

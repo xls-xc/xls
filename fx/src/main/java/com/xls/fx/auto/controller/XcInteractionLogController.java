@@ -1,15 +1,21 @@
-package com.xls.fx.controller;
+package com.xls.fx.auto.controller;
 
 import javax.validation.Valid;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.xls.fx.vo.XcInteractionLog;
-import com.xls.fx.service.XcInteractionLogService;
+import org.springframework.ui.Model;
+
+import com.xls.fx.config.PageInfo;
+import com.xls.fx.auto.entity.XcInteractionLog;
+import com.xls.fx.auto.service.XcInteractionLogService;
+import com.xls.fx.config.BaseController;
 
 /**
  * <p>
@@ -17,11 +23,11 @@ import com.xls.fx.service.XcInteractionLogService;
  * </p>
  *
  * @author chenshuaikai
- * @since 2020-04-28
+ * @since 2020-04-29
  */
 @Controller
 @RequestMapping("/xcInteractionLog")
-public class XcInteractionLogController {
+public class XcInteractionLogController extends BaseController {
 
     @Autowired private XcInteractionLogService xcInteractionLogService;
 
@@ -33,11 +39,11 @@ public class XcInteractionLogController {
     @PostMapping("/dataGrid")
     @ResponseBody
     public PageInfo dataGrid(XcInteractionLog xcInteractionLog, Integer page, Integer rows, String sort,String order) {
-        PageInfo pageInfo = new PageInfo(page, rows, sort, order);
+        PageInfo pageInfo = new PageInfo(page, rows, isAsc(sort), order);
         EntityWrapper<XcInteractionLog> ew = new EntityWrapper<XcInteractionLog>(xcInteractionLog);
         Page<XcInteractionLog> pages = getPage(page, rows, sort, order);
         pages = xcInteractionLogService.selectPage(pages, ew);
-        pageInfo.setRows(pages.getRecords());
+        pageInfo.setRecords(pages.getRecords());
         pageInfo.setTotal(pages.getTotal());
         return pageInfo;
     }
@@ -59,15 +65,9 @@ public class XcInteractionLogController {
     @PostMapping("/add")
     @ResponseBody
     public Object add(@Valid XcInteractionLog xcInteractionLog) {
-        xcInteractionLog.setCreateTime(new Date());
-        xcInteractionLog.setUpdateTime(new Date());
-        xcInteractionLog.setDeleteFlag(0);
+        //xcInteractionLog.setCreateTime(new Date());
         boolean b = xcInteractionLogService.insert(xcInteractionLog);
-        if (b) {
-            return renderSuccess("添加成功！");
-        } else {
-            return renderError("添加失败！");
-        }
+        return null;
     }
 
     /**
@@ -79,15 +79,8 @@ public class XcInteractionLogController {
     @ResponseBody
     public Object delete(Long id) {
         XcInteractionLog xcInteractionLog = new XcInteractionLog();
-        xcInteractionLog.setId(id);
-        xcInteractionLog.setUpdateTime(new Date());
-        xcInteractionLog.setDeleteFlag(1);
-        boolean b = xcInteractionLogService.updateById(xcInteractionLog);
-        if (b) {
-            return renderSuccess("删除成功！");
-        } else {
-            return renderError("删除失败！");
-        }
+         boolean b = xcInteractionLogService.updateById(xcInteractionLog);
+      return null;
     }
 
     /**
@@ -111,12 +104,7 @@ public class XcInteractionLogController {
     @PostMapping("/edit")
     @ResponseBody
     public Object edit(@Valid XcInteractionLog xcInteractionLog) {
-        xcInteractionLog.setUpdateTime(new Date());
         boolean b = xcInteractionLogService.updateById(xcInteractionLog);
-        if (b) {
-            return renderSuccess("编辑成功！");
-        } else {
-            return renderError("编辑失败！");
-        }
+        return null;
     }
 }

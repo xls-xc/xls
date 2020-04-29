@@ -1,4 +1,4 @@
-package com.xls.fx.util;
+package com.xls.fx.component;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
@@ -20,14 +20,14 @@ import java.util.Properties;
  * @Create: 2020-04-28 10:12
  * @Version: v1.0
  **/
-public class CommentGenerator extends DefaultCommentGenerator {
+public class GeneratorEntityUtilComponent extends DefaultCommentGenerator {
     private Properties properties;
     private Properties systemPro;
     private boolean suppressDate;
     private boolean suppressAllComments;
     private String currentDateStr;
 
-    public CommentGenerator() {
+    public GeneratorEntityUtilComponent() {
         super();
         properties = new Properties();
         systemPro = System.getProperties();

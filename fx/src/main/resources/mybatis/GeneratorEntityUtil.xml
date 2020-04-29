@@ -13,13 +13,13 @@
         </commentGenerator>-->
 
         <!-- 使用自定义的插件 -->
-        <commentGenerator type="com.xls.fx.util.CommentGenerator"></commentGenerator>
+        <commentGenerator type="com.xls.fx.component.GeneratorEntityUtilComponent"></commentGenerator>
 
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.216.201:3306/xc?serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://192.168.216.202:3306/xc?serverTimezone=UTC"
                         userId="root"
-                        password="SkyChen123456.">
+                        password="123456">
            <!-- 允许获得注释-->
             <property name="useInformationSchema" value="true"></property>
         </jdbcConnection>

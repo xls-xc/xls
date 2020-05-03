@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.Data;
 
 /**
  * @ProjectName: xls (星辰)
@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
  * @Create: 2020-04-28 10:56
  * @Version: v1.0
  **/
+@Data
 public class CodeAutoGeneratorUtil {
     /**
      * 需要生生的路径
@@ -46,16 +47,19 @@ public class CodeAutoGeneratorUtil {
     private static String tableName="xc_interaction_log";
 
 
-    private static String uselessPackage = "C:\\Users\\clement\\Desktop\\xls\\fx\\src\\main\\java\\com\\xls\\fx\\auto\\delete";
-    private static String fromChangeFilePackage = "C:\\Users\\clement\\Desktop\\xls\\fx\\src\\main\\java\\com\\xls\\fx\\auto\\xml";
-    private static String toChangeFilePath = "C:\\Users\\clement\\Desktop\\xls\\fx\\src\\main\\resources\\mapper";
 
-    /**
-     * <p>
-     * MySQL 生成演示
-     * </p>
-     */
-    public static void main(String[] args) {
+    public static void auto(String createPath,String driverClass,String mysqlUrl,String userName,String password,
+                            String baseController,String basePackage,String tableName){
+        CodeAutoGeneratorUtil.createPath = createPath;
+        CodeAutoGeneratorUtil.driverClass = driverClass;
+        CodeAutoGeneratorUtil.mysqlUrl = mysqlUrl;
+        CodeAutoGeneratorUtil.userName = userName;
+        CodeAutoGeneratorUtil.password = password;
+        CodeAutoGeneratorUtil.baseController = baseController;
+        CodeAutoGeneratorUtil.basePackage = basePackage;
+        CodeAutoGeneratorUtil.tableName = tableName;
+
+
         AutoGenerator mpg = new AutoGenerator();
         // 全局配置
         overallConfig(mpg);
@@ -75,6 +79,37 @@ public class CodeAutoGeneratorUtil {
         AutoGenerator mpg1 = new AutoGenerator();
         createMapperXml(mpg1);
         mpg1.execute();
+
+    }
+
+
+
+
+    /**
+     * <p>
+     * MySQL 生成演示
+     * </p>
+     */
+    public static void main(String[] args) {
+       /* AutoGenerator mpg = new AutoGenerator();
+        // 全局配置
+        overallConfig(mpg);
+
+        // 数据源配置
+        dataSourceConfig(mpg);
+
+        // 策略配置
+        strategyConfig(mpg);
+
+        //包配置
+        packageConfig(mpg);
+
+        // 执行生成
+        mpg.execute();
+
+        AutoGenerator mpg1 = new AutoGenerator();
+        createMapperXml(mpg1);
+        mpg1.execute();*/
 
 
     }

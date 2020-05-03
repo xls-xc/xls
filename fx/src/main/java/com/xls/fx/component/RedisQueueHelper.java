@@ -9,7 +9,7 @@ import redis.clients.jedis.JedisPool;
 /**
  * @ProjectName: xls (星辰)
  * @PackageName: com.xls.fx.component
- * @ClassName: RedistQueueHelper
+ * @ClassName: RedisQueueHelper
  * @Description: Redis队列辅助类
  * @Author: SkyChen
  * @Create: 2020-04-30 10:23
@@ -30,12 +30,18 @@ public class RedisQueueHelper {
      * @return
      */
     public String pop(String name) {
-        Jedis jedis = jedisPool.getResource();
+        Jedis jedis = null;
         try {
+            jedis = jedisPool.getResource();
             return jedis.lpop(prefix + name);
-        } finally {
-            //jedisPool.returnResourceObject(jedis);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(jedis!=null) {
+                jedis.close();
+            }
         }
+        return null;
     }
 
     /**
@@ -43,11 +49,16 @@ public class RedisQueueHelper {
      * @param value
      */
     public void push(String name, String value) {
-        Jedis jedis = jedisPool.getResource();
+        Jedis jedis = null;
         try {
+            jedis = jedisPool.getResource();
             jedis.rpush(prefix + name, value);
-        } finally {
-            //jedisPool.returnResourceObject(jedis);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(jedis!=null) {
+                jedis.close();
+            }
         }
     }
 }

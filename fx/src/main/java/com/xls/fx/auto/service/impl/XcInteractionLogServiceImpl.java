@@ -1,33 +1,33 @@
-package ${package.ServiceImpl};
+package com.xls.fx.auto.service.impl;
 
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import ${package.Entity}.${entity};
-import ${package.Mapper}.${table.mapperName};
-import ${package.Service}.${table.serviceName};
+import com.xls.fx.auto.entity.XcInteractionLog;
+import com.xls.fx.auto.dao.XcInteractionLogMapper;
+import com.xls.fx.auto.service.XcInteractionLogService;
 
 /**
- * ${entity} 业务接口实现类
- * @author ${author}
- * @since ${date}
+ * XcInteractionLog 业务接口实现类
+ * @author chenshuaikai
+ * @since 2020-05-03
  */
 @Service
-public class ${table.serviceImplName} implements ${table.serviceName} {
+public class XcInteractionLogServiceImpl implements XcInteractionLogService {
 
 
         @Autowired
-        private ${table.mapperName} mapper;
+        private XcInteractionLogMapper mapper;
 
         /**
-        * 返回${entity}表所有数据
+        * 返回XcInteractionLog表所有数据
         * @return
         */
         @Override
-        public Map<String,Object> findAll${entity}(Map query) {
-            List<Map> dataList = mapper.findAll${entity}(query);
+        public Map<String,Object> findAllXcInteractionLog(Map query) {
+            List<Map> dataList = mapper.findAllXcInteractionLog(query);
             int totalRow = mapper.getTotalRow(query);
             Map map = new HashMap();
             map.put("dataList",dataList);
@@ -36,11 +36,11 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
         }
 
         /**
-        * 添加${entity}表数据
+        * 添加XcInteractionLog表数据
         */
         @Override
-        public Map<String,Object> add${entity}(${entity} ${table.entityPath}) {
-            int addResult = mapper.add${entity}(${table.entityPath});
+        public Map<String,Object> addXcInteractionLog(XcInteractionLog xcInteractionLog) {
+            int addResult = mapper.addXcInteractionLog(xcInteractionLog);
             Map<String,Object> resutlMap = new HashMap<String,Object>();
             if(addResult>0) {
             resutlMap.put("code",true);
@@ -52,11 +52,11 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
 
 
         /**
-         * 删除${entity}表指定的数据
+         * 删除XcInteractionLog表指定的数据
          */
         @Override
-        public Map<String,Object>del${entity}ById(Integer primaryKeyId) {
-            int addResult = mapper.del${entity}ById(primaryKeyId);
+        public Map<String,Object>delXcInteractionLogById(Integer primaryKeyId) {
+            int addResult = mapper.delXcInteractionLogById(primaryKeyId);
             Map<String,Object> resutlMap = new HashMap<String,Object>();
             if(addResult>0) {
             resutlMap.put("code",true);
@@ -67,11 +67,11 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
         }
 
         /**
-         * 根据${entity}表的主键id修改表的信息
+         * 根据XcInteractionLog表的主键id修改表的信息
          */
         @Override
-        public Map<String,Object> update${entity}ById(${entity} ${table.entityPath}) {
-            int addResult = mapper.update${entity}ById(${table.entityPath});
+        public Map<String,Object> updateXcInteractionLogById(XcInteractionLog xcInteractionLog) {
+            int addResult = mapper.updateXcInteractionLogById(xcInteractionLog);
             Map<String,Object> resutlMap = new HashMap<String,Object>();
             if(addResult>0) {
             resutlMap.put("code",true);

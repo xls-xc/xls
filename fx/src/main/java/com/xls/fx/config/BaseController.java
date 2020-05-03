@@ -1,7 +1,6 @@
 package com.xls.fx.config;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.xls.fx.config.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,12 +19,18 @@ public abstract class BaseController {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    public <T> Page<T> getPage(int current, int size, String sort, String order){
+    public <T> Page<T> getPage(Integer current, Integer size, String sort, String order){
+        if(current==null) {
+            current = 1;
+        }
+        if(size == null) {
+            size = 10;
+        }
         Page<T> page = new Page<T>(current, size, sort);
-        if ("desc".equals(order)) {
-            page.setAsc(false);
-        } else {
+        if ("asc".equals(order)) {
             page.setAsc(true);
+        } else {
+            page.setAsc(false);
         }
         return page;
     }

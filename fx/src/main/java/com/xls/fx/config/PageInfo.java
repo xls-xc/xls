@@ -56,12 +56,12 @@ public class PageInfo <T> implements Serializable {
      * 当前页
      */
     @JsonIgnore
-    private int currentPage;
+    private int currentPage = 1;
     /**
      * 每页显示的记录数
      */
     @JsonIgnore
-    private int pageSize;
+    private int pageSize = 10;
 
     /**
      * 查询条件
@@ -76,10 +76,10 @@ public class PageInfo <T> implements Serializable {
     private String orderByField = "seq";
 
     /**
-     * 排序类型 asc，desc  默认正序 true asc 正序
+     * 排序类型 asc，desc  默认正序 false desc 正序
      */
     @JsonIgnore
-    private Boolean isAsc = true;
+    private Boolean isAsc = false;
 
     public PageInfo() {}
 
@@ -88,7 +88,15 @@ public class PageInfo <T> implements Serializable {
      * @param currentPage 页码
      * @param pageSize 显示条数
      */
-    public PageInfo(int currentPage, int pageSize) {
+    public PageInfo(Integer currentPage, Integer pageSize) {
+        if(currentPage==null){
+            currentPage = 1;
+        }
+
+        if(pageSize==null) {
+            pageSize = 10;
+        }
+
         //计算当前页
         if (currentPage < 0) {
             this.currentPage = 1;
@@ -114,7 +122,7 @@ public class PageInfo <T> implements Serializable {
      * @param isAsc true 为正序 false为倒序
      * @param orderByField 排序字段
      */
-    public PageInfo(int currentPage, int pageSize, Boolean isAsc, String orderByField) {
+    public PageInfo(Integer currentPage, Integer pageSize, Boolean isAsc, String orderByField) {
         this(currentPage, pageSize) ;
         // 排序字段，正序还是倒序
         this.isAsc = isAsc;

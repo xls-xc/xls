@@ -1,6 +1,7 @@
-package com.xls.xc.xpy.common;
+package com.xls.fx.component;
 
 import org.apache.commons.collections.MapUtils;
+
 
 /**
  * @ProjectName: xc (星辰)
@@ -55,15 +56,6 @@ public class ResultEntity {
      */
     public static ResultEntity getEntitySuccess() {
         return new ResultEntity(SUCCESS, MapUtils.getString(ResultInfo.map, SUCCESS), "", "");
-    }
-
-
-    /**
-     * 有实参 快捷返回成功实体对象
-     * @return
-     */
-    public static ResultEntity getEntitySuccess(Integer successCode) {
-        return new ResultEntity(successCode, MapUtils.getString(ResultInfo.map, successCode,"操作成功"),"","");
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.xls.fx.config;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,8 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
-
 
 /**
  * @ProjectName: xls (星辰)
@@ -53,6 +52,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         jedisPoolConfig.setMaxTotal(maxTotal);
         jedisPoolConfig.setMaxIdle(maxIdle);
         jedisPoolConfig.setMinIdle(minIdle);
+
         JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, null);
         logger.info("JedisPool注入成功！！");
         logger.info("redis地址：" + host + ":" + port);

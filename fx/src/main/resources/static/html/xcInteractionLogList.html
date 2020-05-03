@@ -144,7 +144,9 @@
             var params = new URLSearchParams();
             params.append("page", 1);
             params.append("rows",10);
-            axios.post(fx_ipAddr+'/xcInteractionLog/dataGrid',params)
+
+            var queryMap = {"1":1};
+            axios.post(fx_ipAddr+'/xcInteractionLog/dataGrid',queryMap)
                 .then(function (response) {
                     vue.deptList=response.data.records;
                     vue.totalRow=response.data.total;

@@ -1,60 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xls.fx.auto.delete.XcInteractionLogMapper">
+<mapper namespace="com.xls.fx.auto.dao.XcInteractionLogMapper">
 
-   <!-- 通用查询映射结果 -->
-   <resultMap id="BaseResultMap" type="com.xls.fx.auto.delete.XcInteractionLog">
-      <id column="xc_interaction_log_id" property="xcInteractionLogId" />
-      <result column="system_name" property="systemName" />
-      <result column="module_name" property="moduleName" />
-      <result column="menu_name" property="menuName" />
-      <result column="request_url" property="requestUrl" />
-      <result column="class_name" property="className" />
-      <result column="method_name" property="methodName" />
-      <result column="request_time" property="requestTime" />
-      <result column="response_time" property="responseTime" />
-      <result column="response_time_long" property="responseTimeLong" />
-      <result column="request_param" property="requestParam" />
-      <result column="response_param" property="responseParam" />
-      <result column="response_code" property="responseCode" />
-      <result column="user_no" property="userNo" />
-      <result column="user_code" property="userCode" />
-      <result column="user_name" property="userName" />
-      <result column="standby_field1" property="standbyField1" />
-      <result column="standby_field2" property="standbyField2" />
-      <result column="standby_field3" property="standbyField3" />
-      <result column="standby_field4" property="standbyField4" />
-      <result column="standby_field5" property="standbyField5" />
-   </resultMap>
-
-
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xls.fx.auto.entity.XcInteractionLog">
+        <id column="xc_interaction_log_id" property="xcInteractionLogId" />
+        <result column="system_name" property="systemName" />
+        <result column="module_name" property="moduleName" />
+        <result column="menu_name" property="menuName" />
+        <result column="request_url" property="requestUrl" />
+        <result column="class_name" property="className" />
+        <result column="method_name" property="methodName" />
+        <result column="request_time" property="requestTime" />
+        <result column="response_time" property="responseTime" />
+        <result column="response_time_long" property="responseTimeLong" />
+        <result column="request_param" property="requestParam" />
+        <result column="response_param" property="responseParam" />
+        <result column="response_code" property="responseCode" />
+        <result column="user_no" property="userNo" />
+        <result column="user_code" property="userCode" />
+        <result column="user_name" property="userName" />
+        <result column="standby_field1" property="standbyField1" />
+        <result column="standby_field2" property="standbyField2" />
+        <result column="standby_field3" property="standbyField3" />
+        <result column="standby_field4" property="standbyField4" />
+        <result column="standby_field5" property="standbyField5" />
+    </resultMap>
 
 
-    
+
+
+
     <select id="findAllXcInteractionLog" parameterType="map" resultType="map">
         select * from xc_interaction_log
     </select>
 
-    
+
     <select id="getTotalRow" resultType="Integer">
-        select count(*) total from xcInteractionLog
-        <where>
-            <if test=""></if>
-        </where>
+        select count(*) total from xc_interaction_log
     </select>
 
-    
-    <insert id="addXcInteractionLog" parameterType="com.xls.fx.auto.delete.XcInteractionLog">
-        insert into xcInteractionLog(field_name)values(#{value_name})
+
+    <insert id="addXcInteractionLog" parameterType="com.xls.fx.auto.entity.XcInteractionLog">
+        insert into xc_interaction_log(system_name)values(#{systemName})
     </insert>
 
-    
+
     <delete id="delXcInteractionLogById" parameterType="Integer">
-        delete from xcInteractionLog where id=#{primaryKeyId}
+        delete from xc_interaction_log where id=#{primaryKeyId}
     </delete>
 
-    
-    <update id="updateXcInteractionLogById" parameterType="com.xls.fx.auto.delete.XcInteractionLog">
-        update xcInteractionLog set field_name=#{value_name} where id=#{id}
+
+    <update id="updateXcInteractionLogById" parameterType="com.xls.fx.auto.entity.XcInteractionLog">
+        update xc_interaction_log set 1=1 where id=#{id}
     </update>
 </mapper>

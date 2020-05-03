@@ -44,12 +44,12 @@ public class CodeAutoGeneratorUtil {
     /**
      * 需要生成的表名
      */
-    private static String tableName="xc_interaction_log";
+    private static String[] tableName={"xc_interaction_log"};
 
 
 
     public static void auto(String createPath,String driverClass,String mysqlUrl,String userName,String password,
-                            String baseController,String basePackage,String tableName){
+                            String baseController,String basePackage,String[] tableName){
         CodeAutoGeneratorUtil.createPath = createPath;
         CodeAutoGeneratorUtil.driverClass = driverClass;
         CodeAutoGeneratorUtil.mysqlUrl = mysqlUrl;
@@ -91,7 +91,7 @@ public class CodeAutoGeneratorUtil {
      * </p>
      */
     public static void main(String[] args) {
-       /* AutoGenerator mpg = new AutoGenerator();
+        AutoGenerator mpg = new AutoGenerator();
         // 全局配置
         overallConfig(mpg);
 
@@ -109,9 +109,7 @@ public class CodeAutoGeneratorUtil {
 
         AutoGenerator mpg1 = new AutoGenerator();
         createMapperXml(mpg1);
-        mpg1.execute();*/
-
-
+        mpg1.execute();
     }
 
     /**
@@ -165,7 +163,8 @@ public class CodeAutoGeneratorUtil {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         //strategy.setNaming(NamingStrategy.nochange);
         // 需要生成的表
-        strategy.setInclude(new String[]{tableName});
+        //strategy.setInclude(new String[]{tableName});
+        strategy.setInclude(tableName);
         strategy.setSuperServiceClass(null);
         strategy.setSuperServiceImplClass(null);
         strategy.setSuperMapperClass(null);
@@ -228,7 +227,7 @@ public class CodeAutoGeneratorUtil {
         // 表名生成策略
         strategy.setNaming(NamingStrategy.underline_to_camel);
         // 需要生成的表
-        strategy.setInclude(new String[]{tableName});
+        strategy.setInclude(tableName);
         // 自定义实体，公共字段
         // strategy.setSuperEntityColumns(new String[] { "test_id", "age" });
         strategy.setSuperServiceClass(null);

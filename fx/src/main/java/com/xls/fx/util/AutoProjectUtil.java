@@ -35,10 +35,15 @@ public class AutoProjectUtil {
     /**
      * 需要生成的表名
      */
-    private static String tableName="xc_interaction_log";
+    private static String[] tableName={"xc_interaction_log"};
 
     public static void main(String[] args) {
         CodeAutoGeneratorUtil.auto(createPath,driverClass,mysqlUrl,userName,password,baseController,basePackage,tableName);
+        FileUtil.codeHelper(fromChangeFilePackage,toChangeFilePath,uselessPackage);
+    }
+
+    public static void createTableEntity(String[] tableNames) {
+        CodeAutoGeneratorUtil.auto(createPath,driverClass,mysqlUrl,userName,password,baseController,basePackage,tableNames);
         FileUtil.codeHelper(fromChangeFilePackage,toChangeFilePath,uselessPackage);
     }
 }

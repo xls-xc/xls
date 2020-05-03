@@ -3,27 +3,27 @@
 <mapper namespace="${package.Mapper}.${table.mapperName}">
 
 #if(${enableCache})
-	<!-- 开启二级缓存 -->
-	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+   <!-- 开启二级缓存 -->
+   <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
 
 #end
 #if(${baseResultMap})
-	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="${package.Entity}.${entity}">
+   <!-- 通用查询映射结果 -->
+   <resultMap id="BaseResultMap" type="${package.Entity}.${entity}">
 #foreach($field in ${table.fields})
 #if(${field.keyFlag})##生成主键排在第一位
-		<id column="${field.name}" property="${field.propertyName}" />
+      <id column="${field.name}" property="${field.propertyName}" />
 #end
 #end
 #foreach($field in ${table.commonFields})##生成公共字段
-	<result column="${field.name}" property="${field.propertyName}" />
+   <result column="${field.name}" property="${field.propertyName}" />
 #end
 #foreach($field in ${table.fields})
 #if(!${field.keyFlag})##生成普通字段
-		<result column="${field.name}" property="${field.propertyName}" />
+      <result column="${field.name}" property="${field.propertyName}" />
 #end
 #end
-	</resultMap>
+   </resultMap>
 
 #end
 #if(${baseColumnList})
@@ -33,4 +33,38 @@
     </sql>
 
 #end
+
+
+
+    #*查询所有数据*#
+    <select id="findAll${entity}" parameterType="map" resultType="map">
+        select * from ${table.name}
+        <where>
+            <if test=""></if>
+        </where>
+        limit #{start},#{ end}
+    </select>
+
+    #*查询总条数*#
+    <select id="getTotalRow" resultType="Integer">
+        select count(*) total from ${table.entityPath}
+        <where>
+            <if test=""></if>
+        </where>
+    </select>
+
+    #*添加数据*#
+    <insert id="add${entity}" parameterType="${package.Entity}.${entity}">
+        insert into ${table.entityPath}(field_name)values(#{value_name})
+    </insert>
+
+    #*删除数据*#
+    <delete id="del${entity}ById" parameterType="Integer">
+        delete from ${table.entityPath} where id=#{primaryKeyId}
+    </delete>
+
+    #*修改数据*#
+    <update id="update${entity}ById" parameterType="${package.Entity}.${entity}">
+        update ${table.entityPath} set field_name=#{value_name} where id=#{id}
+    </update>
 </mapper>

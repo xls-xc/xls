@@ -20,7 +20,6 @@ public interface XcInteractionLogMapper {
         *  @param query
         *  @return
         */
-       // @Cacheable(value = "a",key = "#findAllXcInteractionLog")
         List<Map> findAllXcInteractionLog(Map query);
 
         /**
@@ -28,7 +27,6 @@ public interface XcInteractionLogMapper {
         * @param query
         * @return
         */
-       // @Cacheable(value = "a",key = "#getTotalRow")
         int getTotalRow(Map query);
 
         /**

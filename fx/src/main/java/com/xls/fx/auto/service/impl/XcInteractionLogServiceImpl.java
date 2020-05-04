@@ -9,6 +9,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.xls.fx.common.RedisHelper;
 import com.xls.fx.constant.CacheKey;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.xls.fx.auto.entity.XcInteractionLog;
@@ -21,6 +23,7 @@ import com.xls.fx.auto.service.XcInteractionLogService;
  * @since 2020-05-03
  */
 @Service
+@CacheConfig(cacheNames = "xcInteractionLogServiceImpl")
 public class XcInteractionLogServiceImpl implements XcInteractionLogService {
 
 
@@ -35,15 +38,16 @@ public class XcInteractionLogServiceImpl implements XcInteractionLogService {
         * @return
         */
         @Override
+        @Cacheable(value = "findAllXcInteractionLog",key = "#query" )
         public Map<String,Object> findAllXcInteractionLog(Map query) {
             Map map = new HashMap();
-            String cacheMap = null; redisHelper.get(CacheKey.XC_INTERACTION_LOG);
+            String cacheMap = redisHelper.get(CacheKey.XC_INTERACTION_LOG);
             if(StringUtils.isBlank(cacheMap)) {
                 List<Map> dataList = mapper.findAllXcInteractionLog(query);
                 int totalRow = mapper.getTotalRow(query);
                 map.put("dataList",dataList);
                 map.put("totalRow",totalRow);
-                //redisHelper.set(CacheKey.XC_INTERACTION_LOG, JSON.toJSONString(map),30);
+                redisHelper.set(CacheKey.XC_INTERACTION_LOG, JSON.toJSONString(map),30);
             }else {
                 map = JSON.parseObject(cacheMap);
             }

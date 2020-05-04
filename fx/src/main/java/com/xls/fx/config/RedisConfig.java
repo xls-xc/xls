@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
@@ -43,6 +44,7 @@ import static java.util.Collections.singletonMap;
  **/
 
 @Configuration
+@EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
 
     protected static final Logger logger = LoggerFactory.getLogger(RedisConfig.class);
@@ -192,7 +194,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         /* 配置test的超时时间为120s*/
         RedisCacheManager cacheManager = RedisCacheManager.builder(RedisCacheWriter.lockingRedisCacheWriter
                 (redisConnectionFactory)).cacheDefaults(defaultCacheConfig).withInitialCacheConfigurations(singletonMap
-                ("a", RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(120L))
+                ("xcInteractionLogServiceImpl", RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(10L))
                         .disableCachingNullValues())).transactionAware().build();
 
         return cacheManager;

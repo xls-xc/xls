@@ -146,7 +146,7 @@
             params.append("rows",10);
 
             var queryMap = {"1":1};
-            axios.post(fx_ipAddr+'/xcInteractionLog/dataGrid',queryMap)
+            axios.post('/fx/xcInteractionLog/dataGrid',queryMap)
                 .then(function (response) {
                     vue.deptList=response.data.records;
                     vue.totalRow=response.data.total;

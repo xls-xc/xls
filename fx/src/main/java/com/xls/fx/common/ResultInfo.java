@@ -1,4 +1,4 @@
-package com.xls.fx.component;
+package com.xls.fx.common;
 
 
 import java.util.HashMap;

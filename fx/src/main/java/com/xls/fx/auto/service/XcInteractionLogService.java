@@ -1,7 +1,6 @@
 package com.xls.fx.auto.service;
 
 
-import java.util.List;
 import java.util.Map;
 import com.xls.fx.auto.entity.XcInteractionLog;
 

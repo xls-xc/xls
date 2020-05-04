@@ -1,4 +1,4 @@
-package com.xls.fx.component;
+package com.xls.fx.common;
 
 import org.apache.commons.collections.MapUtils;
 

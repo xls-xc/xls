@@ -13,7 +13,7 @@
         </commentGenerator>-->
 
         <!-- 使用自定义的插件 -->
-        <commentGenerator type="com.xls.fx.component.GeneratorEntityUtilComponent"></commentGenerator>
+        <commentGenerator type="com.xls.fx.common.GeneratorEntityUtilComponent"></commentGenerator>
 
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"

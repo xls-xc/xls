@@ -1,4 +1,4 @@
-package com.xls.fx.component;
+package com.xls.fx.common;
 
 /**
  * @ProjectName: xc (星辰)

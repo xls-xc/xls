@@ -1,4 +1,4 @@
-package com.xls.fx.component;
+package com.xls.fx.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +23,7 @@ public class RedisQueueHelper {
     /**
      * Queue前缀
      */
-    @Value("nc:queue")
+    @Value("fx:queue")
     private String prefix;
     /**
      * 读取队列

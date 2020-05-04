@@ -1,4 +1,4 @@
-package com.xls.fx.component;
+package com.xls.fx.common;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;

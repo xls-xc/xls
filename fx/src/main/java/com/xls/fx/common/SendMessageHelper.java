@@ -1,4 +1,4 @@
-package com.xls.fx.component;
+package com.xls.fx.common;
 
 import com.alibaba.fastjson.JSON;
 import com.xls.fx.constant.MessageTemplateSendType;

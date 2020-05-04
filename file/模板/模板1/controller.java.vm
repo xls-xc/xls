@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 
 import com.xls.fx.config.PageInfo;
-import com.xls.fx.component.ResultCode;
-import com.xls.fx.component.ResultEntity;
+import com.xls.fx.common.ResultCode;
+import com.xls.fx.common.ResultEntity;
 
 import ${package.Entity}.${entity};
 import ${package.Service}.${table.serviceName};

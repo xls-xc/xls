@@ -3,6 +3,12 @@ package com.xls.fx.auto.service.impl;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.xls.fx.common.RedisHelper;
+import com.xls.fx.constant.CacheKey;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.xls.fx.auto.entity.XcInteractionLog;
@@ -21,17 +27,27 @@ public class XcInteractionLogServiceImpl implements XcInteractionLogService {
         @Autowired
         private XcInteractionLogMapper mapper;
 
+        @Autowired
+        private RedisHelper redisHelper;
+
         /**
         * 返回XcInteractionLog表所有数据
         * @return
         */
         @Override
         public Map<String,Object> findAllXcInteractionLog(Map query) {
-            List<Map> dataList = mapper.findAllXcInteractionLog(query);
-            int totalRow = mapper.getTotalRow(query);
             Map map = new HashMap();
-            map.put("dataList",dataList);
-            map.put("totalRow",totalRow);
+            String cacheMap = null; redisHelper.get(CacheKey.XC_INTERACTION_LOG);
+            if(StringUtils.isBlank(cacheMap)) {
+                List<Map> dataList = mapper.findAllXcInteractionLog(query);
+                int totalRow = mapper.getTotalRow(query);
+                map.put("dataList",dataList);
+                map.put("totalRow",totalRow);
+                //redisHelper.set(CacheKey.XC_INTERACTION_LOG, JSON.toJSONString(map),30);
+            }else {
+                map = JSON.parseObject(cacheMap);
+            }
+
             return map;
         }
 

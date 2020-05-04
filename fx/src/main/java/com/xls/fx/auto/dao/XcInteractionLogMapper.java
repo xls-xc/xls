@@ -3,6 +3,7 @@ package com.xls.fx.auto.dao;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import com.xls.fx.auto.entity.XcInteractionLog;
 /**
@@ -19,6 +20,7 @@ public interface XcInteractionLogMapper {
         *  @param query
         *  @return
         */
+       // @Cacheable(value = "a",key = "#findAllXcInteractionLog")
         List<Map> findAllXcInteractionLog(Map query);
 
         /**
@@ -26,6 +28,7 @@ public interface XcInteractionLogMapper {
         * @param query
         * @return
         */
+       // @Cacheable(value = "a",key = "#getTotalRow")
         int getTotalRow(Map query);
 
         /**

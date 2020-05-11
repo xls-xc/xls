@@ -1,4 +1,4 @@
-package com.xls.xc.xpy.common;
+package com.xls.alike.common;
 
 
 import java.lang.reflect.Field;
@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
  * @Create: 2020-04-01 20:35
  * @Version: v1.0
  **/
-public class BaseObject<T> {
+public class BaseController<T> {
 
     /**
      * 对象的所有属性和值转换为json字符串

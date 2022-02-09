@@ -19,7 +19,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring.version>5.2.5.RELEASE</spring.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
-        <shiro.version>1.5.1</shiro.version>
+        <shiro.version>1.7.1</shiro.version>
         <cxf.version>3.3.5</cxf.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
